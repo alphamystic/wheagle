@@ -14,7 +14,7 @@ func main(){
   if err != nil{
     log.Fatalf("[-] Failed to start listening on port 5001 for beacons: %v",err)
   }
-
+  fmt.Println("[+]  Initializing beacon server")
   s := stream.Server{}
   grpcServer := grpc.NewServer()
   stream.RegisterChatServiceServer(grpcServer,&s)
