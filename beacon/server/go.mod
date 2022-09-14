@@ -3,7 +3,7 @@ module github.com/alphamystic/wheagle/beacon/protos
 go 1.18
 
 require (
-	github.com/alphamystic/wheagle v0.0.0-20220913093100-e45ae96ee184
+	github.com/alphamystic/wheagle v0.0.0-20220914071732-510d8c782193
 	google.golang.org/grpc v1.49.0
 )
 

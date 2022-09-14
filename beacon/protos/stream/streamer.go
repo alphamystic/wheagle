@@ -1,6 +1,6 @@
 package stream
 import (
-  "fmt"
+  "log"
   "errors"
   "golang.org/x/net/context"
 )
@@ -10,28 +10,28 @@ type ChatServer struct{
 }
 
 type implantServer struct{
-  work, output chan *grpcapi.Command
+  work, output chan *Command
 }
 
 type adminServer struct{
-  work, output chan *grpcapi.Command
+  work, output chan *Command
 }
 
-func (s *Server) SayHello(ctx context.Context, message *Message)(*Message,error){
+func (s *ChatServer) SayHello(ctx context.Context, message *Message)(*Message,error){
   //Don't log messages but prrint them out instead
   log.Printf("[+] Received message body from client: %s",message.Body)
   return &Message{Body:"Hello too"},nil
 }
 
 
-func NewImplantServer(work, output chan *grpcapi.Command) *implantServer{
+func NewImplantServer(work, output chan *Command) *implantServer{
   s := new(implantServer)
   s.work = work
   s.output = output
   return s
 }
 
-func NewAdminServer(work, output chan *grpcapi.Command) *adminServer{
+func NewAdminServer(work, output chan *Command) *adminServer{
   s := new(adminServer)
   s.work = work
   s.output = output

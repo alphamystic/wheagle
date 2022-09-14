@@ -3,6 +3,7 @@ package main
 import (
   "os"
   "log"
+  "fmt"
   "golang.org/x/net/context"
   "google.golang.org/grpc"
   "github.com/alphamystic/wheagle/beacon/protos/stream"
@@ -14,7 +15,7 @@ func main(){
     err error
     opts []grpc.DialOption
     conn *grpc.ClientConn
-    client stream.AdminCLient
+    client stream.AdminClient
   )
   opts = append(opts,grpc.WithInsecure())
   if conn,err = grpc.Dial(fmt.Sprintf("localhost:%d",5001),opts...); err != nil{

