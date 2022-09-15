@@ -28,7 +28,8 @@ func main(){
   ctx := context.Background()
   cmd,err = client.RunCommand(ctx,cmd)
   if err != nil{
-    log.Fatalf("[-] Error running commads: %v",err)
+    fmt.Println("Error: ",err)
+//    log.Fatalf("[-] Error running commads: %v",err)
   }
   fmt.Println(cmd.Out)
 

