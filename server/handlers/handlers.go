@@ -3,8 +3,7 @@ package handlers
 import (
   "fmt"
   "net/http"
-  "golang.org/x/crypto/bcrypt"
-  "github.com/alphamystic/wheagle/utils"
+  //"github.com/alphamystic/wheagle/utils"
   //"github.com/alphamystic/wheagle/components"
 )
 
@@ -13,12 +12,22 @@ import (
 
 func Home(res http.ResponseWriter,req *http.Request){
   if req.Method != "GET"{
-    tpl.ExecuteTemplate(res,"index.html",nil)
+    tpl.ExecuteTemplate(res,"blank.html",nil)
     return
   }
-  tpl.ExecuteTemplate(res,"index.html",nil)
+  tpl.ExecuteTemplate(res,"blank.html",nil)
   return
 }
+
+func Edr(res http.ResponseWriter,req *http.Request){
+  if req.Method != "GET"{
+    tpl.ExecuteTemplate(res,"edr.html",nil)
+    return
+  }
+  tpl.ExecuteTemplate(res,"edr.html",nil)
+  return
+}
+
 
 func Login(res http.ResponseWriter,req *http.Request){
   if req.Method == "POST"{
@@ -50,24 +59,16 @@ func Logout(res http.ResponseWriter, req *http.Request){
   return
 }
 
+/* API HANDLES */
 
-func Authenticate(password,email string)(bool,string){
-  var userEmail,hash,userId string
-  stmt := "SELECT email,userid,password FROM `prezo`.`users` WHERE email = ?;"
-  row := db.QueryRow(stmt,email)
-  //defer db.Close()
-  err := row.Scan(&userEmail,&userId,&hash)
-  if err != nil{
-    e := utils.LogErrorToFile("sql",fmt.Sprintf("Error scanning rows for authentication %s",err))
-    utils.Logerror(e)
-    return false,userId
-  }
-  err = bcrypt.CompareHashAndPassword([]byte(hash),[]byte(password))
-  if err != nil{
-    e := utils.LogErrorToFile("auth",fmt.Sprintf("Wrong login attempt for email %s with password %s  %s",email,password,err))
-    utils.Logerror(e)
-    return false,userId
-  }
-  fmt.Println("User id during authentication: ",userId)
-  return true,userId
+func Registerimplant(res http.ResponseWriter,req *http.Request){
+  res.Write([]byte(fmt.Sprintf("[+] Registered")))
+}
+
+func Registerbot(res http.ResponseWriter,req *http.Request){
+  res.Write([]byte(fmt.Sprintf("[+] Registered")))
+}
+
+func RegisterAgent(res http.ResponseWriter,req *http.Request){
+  res.Write([]byte(fmt.Sprintf("[+] Registered")))
 }

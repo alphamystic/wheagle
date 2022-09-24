@@ -11,15 +11,15 @@ import(
 
 
 func main(){
-  fs := http.FileServer(http.Dir("/home/sam/Documents/3l0racle/wheagle/server/assets"))
-  http.Handle("/assets/",http.StripPrefix("/assets",fs))
+  fs := http.FileServer(http.Dir("/home/sam/Documents/3l0racle/wheagle/server/static"))
+  http.Handle("/static/",http.StripPrefix("/static",fs))
   handlers.StartHttpServerRoutes()
   /*port = 5000
   prt:= strconv.Itoa(port)
   if err != nil{
     log.Println("[-]  Error converting port into string: ",err)
   }*/
-  fmt.Println("[+]    Starting server")
+  fmt.Println("[+]    Starting HTTP server at 5000")
   err := http.ListenAndServe("0.0.0.0:5000",nil)
   if err !=  nil {
     log.Println("[-]   Error starting http server on port ")
