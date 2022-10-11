@@ -161,3 +161,5 @@ func ExecuteCommand(cmd string, args string)string{
   }
   return string(out[:])
 }
+
+//@TODO Remove this for brevity and change to methods of a bot (call this iniatializer)

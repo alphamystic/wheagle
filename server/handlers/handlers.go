@@ -12,10 +12,10 @@ import (
 
 func Home(res http.ResponseWriter,req *http.Request){
   if req.Method != "GET"{
-    tpl.ExecuteTemplate(res,"blank.html",nil)
+    tpl.ExecuteTemplate(res,"index.html",nil)
     return
   }
-  tpl.ExecuteTemplate(res,"blank.html",nil)
+  tpl.ExecuteTemplate(res,"index.html",nil)
   return
 }
 
@@ -28,6 +28,41 @@ func Edr(res http.ResponseWriter,req *http.Request){
   return
 }
 
+func AptServe(res http.ResponseWriter,req *http.Request){
+  if req.Method != "GET"{
+    tpl.ExecuteTemplate(res,"apt.html",nil)
+    return
+  }
+  tpl.ExecuteTemplate(res,"apt.html",nil)
+  return
+}
+
+func Reports(res http.ResponseWriter,req *http.Request){
+  if req.Method != "GET"{
+    tpl.ExecuteTemplate(res,"reports.html",nil)
+    return
+  }
+  tpl.ExecuteTemplate(res,"reports.html",nil)
+  return
+}
+
+func Livediscovery(res http.ResponseWriter,req *http.Request){
+  if req.Method != "GET"{
+    tpl.ExecuteTemplate(res,"livediscovery.html",nil)
+    return
+  }
+  tpl.ExecuteTemplate(res,"livediscovery.html",nil)
+  return
+}
+
+func AssetsHandler(res http.ResponseWriter,req *http.Request){
+  if req.Method != "GET"{
+    tpl.ExecuteTemplate(res,"assets.html",nil)
+    return
+  }
+  tpl.ExecuteTemplate(res,"assets.html",nil)
+  return
+}
 
 func Login(res http.ResponseWriter,req *http.Request){
   if req.Method == "POST"{

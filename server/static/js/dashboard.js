@@ -1,2192 +1,289 @@
-(function($) {
-	document.querySelector('#bannerClose').addEventListener('click',function() {
-		document.querySelector('#proBanner').classList.add('d-none');
-	});
-	'use strict';
-	$(function() {
-		if ($(".dashboard-progress-1").length) {
-			$('.dashboard-progress-1').circleProgress({
-				value: 0.70,
-				size: 125,
-				thickness: 7,
-				startAngle: 80,
-				fill: {
-					gradient: ["#7922e5", "#1579ff"]
-				}
-			});
-		}
-		if ($(".dashboard-progress-1-dark").length) {
-			$('.dashboard-progress-1-dark').circleProgress({
-				value: 0.70,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				emptyFill: '#eef0fa',
-				fill: {
-					gradient: ["#7922e5", "#1579ff"]
-				}
-			});
-		}
-
-		if ($(".dashboard-progress-2").length) {
-			$('.dashboard-progress-2').circleProgress({
-				value: 0.60,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				fill: {
-					gradient: ["#429321", "#b4ec51"]
-				}
-			});
-		}
-		if ($(".dashboard-progress-2-dark").length) {
-			$('.dashboard-progress-2-dark').circleProgress({
-				value: 0.60,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				emptyFill: '#eef0fa',
-				fill: {
-					gradient: ["#429321", "#b4ec51"]
-				}
-			});
-		}
-
-		if ($(".dashboard-progress-3").length) {
-			$('.dashboard-progress-3').circleProgress({
-				value: 0.90,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				fill: {
-					gradient: ["#f76b1c", "#fad961"]
-				}
-			});
-		}
-		if ($(".dashboard-progress-3-dark").length) {
-			$('.dashboard-progress-3-dark').circleProgress({
-				value: 0.90,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				emptyFill: '#eef0fa',
-				fill: {
-					gradient: ["#f76b1c", "#fad961"]
-				}
-			});
-		}
-
-		if ($(".dashboard-progress-4").length) {
-			$('.dashboard-progress-4').circleProgress({
-				value: 0.45,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				fill: {
-					gradient: ["#9f041b", "#f5515f"]
-				}
-			});
-		}
-		if ($(".dashboard-progress-4-dark").length) {
-			$('.dashboard-progress-4-dark').circleProgress({
-				value: 0.45,
-				size: 125,
-				thickness: 7,
-				startAngle: 10,
-				emptyFill: '#eef0fa',
-				fill: {
-					gradient: ["#9f041b", "#f5515f"]
-				}
-			});
+$(function () {
+    "use strict";
+    var StatsLineOptions = {
+        scales: {
+            responsive: false,
+            maintainAspectRatio: true,
+            yAxes: [{
+                display: false
+            }],
+            xAxes: [{
+                display: false
+            }]
+        },
+        legend: {
+            display: false
+        },
+        elements: {
+            point: {
+                radius: 0
+            }
+        },
+        stepsize: 100
     }
-
-		if ($("#total-profit").length) {
-			var totalProfitData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 4, 6, 4.5, 5.5, 4, 5, 4.2, 5.5],
-					backgroundColor: [
-						'#cfe1ff',
-					],
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalProfitOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-profit").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalProfitData,
-				options: totalProfitOptions,
-			});
+    if ($('#stat-line_1').length) {
+        var lineChartCanvas = $("#stat-line_1").get(0).getContext("2d");
+        var gradientStroke = lineChartCanvas.createLinearGradient(100, 60, 30, 0);
+        gradientStroke.addColorStop(0, '#B721FF');
+        gradientStroke.addColorStop(1, '#21D4FD');
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
+                datasets: [{
+                    label: 'Profit',
+                    data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
+                    borderColor: gradientStroke,
+                    borderWidth: 3,
+                    fill: false
+                }]
+            },
+            options: StatsLineOptions
+        });
     }
-
-		if ($("#sam").length) {
-			var totalProfitData = {
-				labels: ["JANN", "Febb", "Mabr", "Aptr", "bbMay", "Jund", "Judel", "Auge", "Sfep"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 4, 6, 4.5, 5.5, 4, 5, 4.2, 5.5],
-					backgroundColor: [
-						'#cfe1ff',
-					],
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalProfitOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-profit").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalProfitData,
-				options: totalProfitOptions,
-			});
+    if ($('#stat-line_2').length) {
+        var lineChartCanvas = $("#stat-line_2").get(0).getContext("2d");
+        var gradientStroke = lineChartCanvas.createLinearGradient(100, 60, 30, 0);
+        gradientStroke.addColorStop(0, '#08AEEA');
+        gradientStroke.addColorStop(1, '#2AF598');
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
+                datasets: [{
+                    label: 'Profit',
+                    data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
+                    borderColor: gradientStroke,
+                    borderWidth: 3,
+                    fill: false
+                }]
+            },
+            options: StatsLineOptions
+        });
     }
-
-
-		if ($("#total-profit-dark").length) {
-			var graphGradient = document.getElementById("total-profit-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(15, 0, 15, 190);
-			saleGradientBg.addColorStop(0, 'rgba(0, 98, 255, .3)');
-			saleGradientBg.addColorStop(1, 'rgba(0, 0, 0, .2)');
-			var totalProfitDarkData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 4, 6, 4.5, 5.5, 4, 5, 4.2, 5.5],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalProfitDarkOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-profit-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalProfitDarkData,
-				options: totalProfitDarkOptions,
-			});
-		}
-
-		if ($("#total-expences").length) {
-			var totalExpencesData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-				datasets: [{
-					label: 'Margin',
-					data: [4, 5, 6, 5, 4, 5, 4, 6, 5],
-					backgroundColor: [
-						'#e1fff3',
-					],
-					borderColor: [
-						'#3dd597'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalExpencesOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-expences").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalExpencesData,
-				options: totalExpencesOptions,
-			});
+    if ($('#stat-line_3').length) {
+        var lineChartCanvas = $("#stat-line_3").get(0).getContext("2d");
+        var gradientStroke = lineChartCanvas.createLinearGradient(100, 60, 30, 0);
+        gradientStroke.addColorStop(0, '#FEE140');
+        gradientStroke.addColorStop(1, '#FA709A');
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
+                datasets: [{
+                    label: 'Profit',
+                    data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
+                    borderColor: '#6d7cfc',
+                    borderColor: gradientStroke,
+                    borderWidth: 3,
+                    fill: false
+                }]
+            },
+            options: StatsLineOptions
+        });
     }
-
-		if ($("#total-expences-dark").length) {
-			var graphGradient = document.getElementById("total-expences-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(15, 0, 15, 190);
-			saleGradientBg.addColorStop(0, 'rgba(61, 213, 151, .3)');
-			saleGradientBg.addColorStop(1, 'rgba(0, 0, 0, .2)');
-			var totalExpencesDarkData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
-				datasets: [{
-					label: 'Margin',
-					data: [4, 5, 6, 5, 4, 5, 4, 6, 5],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#3dd597'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var totalExpencesDarkOptions = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#total-expences-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: totalExpencesDarkData,
-				options: totalExpencesDarkOptions,
-			});
-		}
-
-		if ($("#device-sales").length) {
-			var deviceSalesData = {
-				labels: ["Iphone", "Google", "Sumsung", "Huawei", "Xiaomi", "Oppo", "Vivo", "Lg"],
-				datasets: [{
-						label: 'Demand',
-						data: [450, 500, 300, 350, 200, 320, 310, 700],
-						backgroundColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Supply',
-						data: [250, 100, 310, 75, 290, 100, 500, 260],
-						backgroundColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var deviceSalesOptions = {
-				scales: {
-					xAxes: [{
-						stacked: false,
-						barPercentage: .5,
-						categoryPercentage: 0.4,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							color: "#eef0fa",
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].backgroundColor[i] + ';"></span><span class="legend-label text-dark">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#device-sales").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: deviceSalesData,
-				options: deviceSalesOptions
-			});
-			document.getElementById('device-sales-legend').innerHTML = barChart.generateLegend();
+    if ($('#stat-line_4').length) {
+        var lineChartCanvas = $("#stat-line_4").get(0).getContext("2d");
+        var gradientStroke = lineChartCanvas.createLinearGradient(100, 60, 30, 0);
+        gradientStroke.addColorStop(0, '#ff7fc7');
+        gradientStroke.addColorStop(1, '#43b4ff');
+        var lineChart = new Chart(lineChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13"],
+                datasets: [{
+                    label: 'Profit',
+                    data: [7, 6, 9, 7, 8, 6, 8, 5, 7, 8, 6, 7, 7],
+                    borderColor: '#6d7cfc',
+                    borderColor: gradientStroke,
+                    borderWidth: 3,
+                    fill: false
+                }]
+            },
+            options: StatsLineOptions
+        });
     }
-
-		if ($("#device-sales-dark").length) {
-			var deviceSalesDarkData = {
-				labels: ["Iphone", "Google", "Sumsung", "Huawei", "Xiaomi", "Oppo", "Vivo", "Lg"],
-				datasets: [{
-						label: 'Demand',
-						data: [450, 500, 300, 350, 200, 320, 310, 700],
-						backgroundColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Supply',
-						data: [250, 100, 310, 75, 290, 100, 500, 260],
-						backgroundColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var deviceSalesDarkOptions = {
-				scales: {
-					xAxes: [{
-						stacked: false,
-						barPercentage: .5,
-						categoryPercentage: 0.4,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#3a3a43",
-							fontSize: 14,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							color: "#3a3a43",
-							drawTicks: false,
-							zeroLineColor: '#3a3a43',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#3a3a43",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].backgroundColor[i] + ';"></span><span class="legend-label text-muted">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#device-sales-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: deviceSalesDarkData,
-				options: deviceSalesDarkOptions
-			});
-			document.getElementById('device-sales-legend').innerHTML = barChart.generateLegend();
-		}
-
-		if ($("#device-sales-dark-rtl").length) {
-			var deviceSalesDarkData = {
-				labels: ["Iphone", "Google", "Sumsung", "Huawei", "Xiaomi", "Oppo", "Vivo", "Lg"],
-				datasets: [{
-					label: 'الطلب',
-						data: [450, 500, 300, 350, 200, 320, 310, 700],
-						backgroundColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'يتبرع',
-						data: [250, 100, 310, 75, 290, 100, 500, 260],
-						backgroundColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var deviceSalesDarkOptions = {
-				scales: {
-					xAxes: [{
-						stacked: false,
-						barPercentage: .5,
-						categoryPercentage: 0.4,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#3a3a43",
-							fontSize: 14,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							color: "#3a3a43",
-							drawTicks: false,
-							zeroLineColor: '#3a3a43',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#3a3a43",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].backgroundColor[i] + ';"></span><span class="legend-label text-muted">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#device-sales-dark-rtl").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: deviceSalesDarkData,
-				options: deviceSalesDarkOptions
-			});
-			document.getElementById('device-sales-legend').innerHTML = barChart.generateLegend();
-		}
-		if ($("#device-sales-rtl").length) {
-			var deviceSalesData = {
-				labels: ["Iphone", "Google", "Sumsung", "Huawei", "Xiaomi", "Oppo", "Vivo", "Lg"],
-				datasets: [{
-						label: 'الطلب',
-						data: [450, 500, 300, 350, 200, 320, 310, 700],
-						backgroundColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderColor: [
-							'#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8', '#a461d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'يتبرع',
-						data: [250, 100, 310, 75, 290, 100, 500, 260],
-						backgroundColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderColor: [
-							'#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a', '#fc5a5a',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var deviceSalesOptions = {
-				scales: {
-					xAxes: [{
-						stacked: false,
-						barPercentage: .5,
-						categoryPercentage: 0.4,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							color: "#eef0fa",
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].backgroundColor[i] + ';"></span><span class="legend-label text-dark">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#device-sales-rtl").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: deviceSalesData,
-				options: deviceSalesOptions
-			});
-			document.getElementById('device-sales-legend').innerHTML = barChart.generateLegend();
+    if ($("#followers-bar-chart").length) {
+        var a = {
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                scales: {
+                    responsive: !0,
+                    maintainAspectRatio: !0,
+                    yAxes: [{
+                        display: !0,
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0.03)",
+                            drawBorder: !1
+                        },
+                        ticks: {
+                            min: 20,
+                            max: 80,
+                            stepSize: 20,
+                            fontColor: "#212529",
+                            maxTicksLimit: 3,
+                            callback: function (a, e, r) {
+                                return a + " K"
+                            },
+                            padding: 10
+                        }
+                    }],
+                    xAxes: [{
+                        display: !1,
+                        barPercentage: .3,
+                        gridLines: {
+                            display: !1,
+                            drawBorder: !1
+                        }
+                    }]
+                },
+                legend: {
+                    display: !1
+                }
+            },
+            e = document.getElementById("followers-bar-chart");
+        new Chart(e, {
+            type: "bar",
+            data: {
+                labels: ["Mon", "Tue", "Wed", "Thus", "Fri", "Sat"],
+                datasets: [{
+                    label: "Follower",
+                    data: [62, 52, 73, 58, 63, 72],
+                    backgroundColor: [chartColors[0], chartColors[0], chartColors[0], chartColors[0], chartColors[0], chartColors[0]],
+                    borderColor: chartColors[0],
+                    borderWidth: 0
+                }]
+            },
+            options: a
+        })
     }
-
-		if ($("#account-retension").length) {
-			var accountRetensionData = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May"],
-				datasets: [{
-						label: 'Demand',
-						data: [33, 48, 39, 36, 36],
-						backgroundColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Demand',
-						data: [94, 28, 49, 25, 20],
-						backgroundColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Demand',
-						data: [66, 33, 25, 36, 69],
-						backgroundColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderColor: [
-							'#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8', '#d8d8d8',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var accountRetensionOptions = {
-				scales: {
-					xAxes: [{
-						stacked: false,
-						position: 'bottom',
-						display: true,
-						barPercentage: .7,
-						categoryPercentage: 1,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							color: "#c31a56",
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							display: false,
-							beginAtZero: true,
-							stepSize: 40,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#account-retension").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: accountRetensionData,
-				options: accountRetensionOptions
-			});
-		}
-
-		if ($("#page-view-analytic").length) {
-			var pageiVewAnalyticData = {
-				labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"],
-				datasets: [{
-						label: 'This week',
-						data: [46, 49, 51, 58, 63.61, 65, 64, 69, 70, 78, 80, 80, 90, 85, 87, 92, 97, 102, 107, 109, 111, 111, 120, 130, 132, 136, 140, 145],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: true,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#3dd597",
-						pointBorderWidth: 2,
-						pointRadius: 4,
-					},
-					{
-						label: 'Current week',
-						data: [16, 19, 21, 28, 33.31, 35, 34, 39, 40, 48, 50, 50, 51, 55, 57, 62, 67, 69, 68, 70, 72, 75, 74, 80, 79, 80, 84, 90],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#0162ff",
-						pointBorderWidth: 2,
-						pointRadius: 4,
-					}
-				],
-			};
-			var pageiVewAnalyticOptions = {
-				scales: {
-					yAxes: [{
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							drawTicks: false,
-							color: '#eef0fa',
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 50,
-							display: true,
-							padding: 10,
-						}
-					}],
-					xAxes: [{
-						display: true,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-							fontColor: "#a7afb7",
-							padding: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor[i] + ';"></span><span class="legend-label text-dark">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				elements: {
-					point: {
-						radius: 1
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#page-view-analytic").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: pageiVewAnalyticData,
-				options: pageiVewAnalyticOptions,
-			});
-			document.getElementById('pageViewAnalyticLengend').innerHTML = barChart.generateLegend();
-		}
-
-		if ($("#page-view-analytic-rtl").length) {
-			var pageiVewAnalyticData = {
-				labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"],
-				datasets: [{
-						label: 'هذا الشهر',
-						data: [46, 49, 51, 58, 63.61, 65, 64, 69, 70, 78, 80, 80, 90, 85, 87, 92, 97, 102, 107, 109, 111, 111, 120, 130, 132, 136, 140, 145],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: true,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#3dd597",
-						pointBorderWidth: 2,
-						pointRadius: 4,
-					},
-					{
-						label: 'الأسبوع الحالي',
-						data: [16, 19, 21, 28, 33.31, 35, 34, 39, 40, 48, 50, 50, 51, 55, 57, 62, 67, 69, 68, 70, 72, 75, 74, 80, 79, 80, 84, 90],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#0162ff",
-						pointBorderWidth: 2,
-						pointRadius: 4,
-					}
-				],
-			};
-			var pageiVewAnalyticOptions = {
-				scales: {
-					yAxes: [{
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							drawTicks: false,
-							color: '#eef0fa',
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 50,
-							display: true,
-							padding: 10,
-						}
-					}],
-					xAxes: [{
-						display: true,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-							fontColor: "#a7afb7",
-							padding: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor[i] + ';"></span><span class="legend-label text-dark">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				elements: {
-					point: {
-						radius: 1
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#page-view-analytic-rtl").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: pageiVewAnalyticData,
-				options: pageiVewAnalyticOptions,
-			});
-			document.getElementById('pageViewAnalyticLengend').innerHTML = barChart.generateLegend();
+    if ($("#radial-chart").length) {
+        a = {
+            chart: {
+                height: 230,
+                type: "radialBar"
+            },
+            series: [67],
+            colors: ["#696ffb"],
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: "70%",
+                        background: "rgba(255,255,255,0.1)"
+                    },
+                    track: {
+                        dropShadow: {
+                            enabled: !0,
+                            top: 2,
+                            left: 0,
+                            blur: 4,
+                            opacity: .02
+                        }
+                    },
+                    dataLabels: {
+                        name: {
+                            offsetY: -10,
+                            color: "#adb5bd",
+                            fontSize: "13px"
+                        },
+                        value: {
+                            offsetY: 5,
+                            color: "#000",
+                            fontSize: "20px",
+                            show: !0
+                        }
+                    }
+                }
+            },
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shade: "dark",
+                    type: "vertical",
+                    gradientToColors: ["#87D4F9"],
+                    stops: [0, 100]
+                }
+            },
+            stroke: {
+                lineCap: "round"
+            },
+            labels: ["Progress"]
+        };
+        (r = new ApexCharts(document.querySelector("#radial-chart"), a)).render()
     }
-
-		if ($("#page-view-analytic-dark").length) {
-			var graphGradient = document.getElementById("page-view-analytic-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 420);
-			saleGradientBg.addColorStop(0, 'rgba(55, 208, 181, 0.34)');
-			saleGradientBg.addColorStop(1, 'rgba(254, 254, 254, 0)');
-			var pageiVewAnalyticDarkData = {
-				labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"],
-				datasets: [{
-						label: 'This week',
-						data: [46, 49, 51, 58, 63.61, 65, 64, 69, 70, 78, 80, 80, 90, 85, 87, 92, 97, 102, 107, 109, 111, 111, 120, 130, 132, 136, 140, 145],
-						backgroundColor: saleGradientBg,
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: true,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#3dd597",
-						pointBorderWidth: 2,
-						pointRadius: 3,
-					},
-					{
-						label: 'Current week',
-						data: [16, 19, 21, 28, 33.31, 35, 34, 39, 40, 48, 50, 50, 51, 55, 57, 62, 67, 69, 68, 70, 72, 75, 74, 80, 79, 80, 84, 90],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#0162ff'
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#0162ff",
-						pointBorderWidth: 2,
-						pointRadius: 3,
-					}
-				],
-			};
-			var pageiVewAnalyticDarkOptions = {
-				scales: {
-					yAxes: [{
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							drawTicks: false,
-							color: '#3a3a43',
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 50,
-							display: true,
-							padding: 10,
-							fontColor: '#3a3a43'
-						}
-					}],
-					xAxes: [{
-						display: true,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-							fontColor: "#3a3a43",
-							padding: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor[i] + ';"></span><span class="legend-label text-muted">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				elements: {
-					point: {
-						radius: 1
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#page-view-analytic-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: pageiVewAnalyticDarkData,
-				options: pageiVewAnalyticDarkOptions,
-			});
-			document.getElementById('pageViewAnalyticLengend').innerHTML = barChart.generateLegend();
-		}
-		if ($("#page-view-analytic-dark-rtl").length) {
-			var graphGradient = document.getElementById("page-view-analytic-dark-rtl").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 420);
-			saleGradientBg.addColorStop(0, 'rgba(55, 208, 181, 0.34)');
-			saleGradientBg.addColorStop(1, 'rgba(254, 254, 254, 0)');
-			var pageiVewAnalyticDarkData = {
-				labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"],
-				datasets: [{
-					label: 'هذا الشهر',
-						data: [46, 49, 51, 58, 63.61, 65, 64, 69, 70, 78, 80, 80, 90, 85, 87, 92, 97, 102, 107, 109, 111, 111, 120, 130, 132, 136, 140, 145],
-						backgroundColor: saleGradientBg,
-						borderColor: [
-							'#3dd597'
-						],
-						borderWidth: 2,
-						fill: true,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#3dd597",
-						pointBorderWidth: 2,
-						pointRadius: 3,
-					},
-					{
-						label: 'الأسبوع الحالي',
-						data: [16, 19, 21, 28, 33.31, 35, 34, 39, 40, 48, 50, 50, 51, 55, 57, 62, 67, 69, 68, 70, 72, 75, 74, 80, 79, 80, 84, 90],
-						backgroundColor: [
-							'rgba(216,247,234, 0.19)',
-						],
-						borderColor: [
-							'#0162ff'
-						],
-						borderWidth: 2,
-						fill: false,
-						pointBorderColor: "#fff",
-						pointBackgroundColor: "#0162ff",
-						pointBorderWidth: 2,
-						pointRadius: 3,
-					}
-				],
-			};
-			var pageiVewAnalyticDarkOptions = {
-				scales: {
-					yAxes: [{
-						display: true,
-						gridLines: {
-							drawBorder: false,
-							display: true,
-							drawTicks: false,
-							color: '#3a3a43',
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 50,
-							display: true,
-							padding: 10,
-							fontColor: '#3a3a43'
-						}
-					}],
-					xAxes: [{
-						display: true,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false,
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10,
-							fontColor: "#3a3a43",
-							padding: 10,
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				legendCallback: function(chart) {
-					var text = [];
-					text.push('<ul class="' + chart.id + '-legend">');
-					for (var i = 0; i < chart.data.datasets.length; i++) {
-						text.push('<li><span class="legend-box" style="background:' + chart.data.datasets[i].borderColor[i] + ';"></span><span class="legend-label text-muted">');
-						if (chart.data.datasets[i].label) {
-							text.push(chart.data.datasets[i].label);
-						}
-						text.push('</span></li>');
-					}
-					text.push('</ul>');
-					return text.join("");
-				},
-				elements: {
-					point: {
-						radius: 1
-					},
-					line: {
-						tension: 0
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#page-view-analytic-dark-rtl").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: pageiVewAnalyticDarkData,
-				options: pageiVewAnalyticDarkOptions,
-			});
-			document.getElementById('pageViewAnalyticLengend').innerHTML = barChart.generateLegend();
-		}
-
-		if ($("#my-balance").length) {
-			var myBalanceData = {
-				labels: ["Jan", "Feb", "Mar", "Apr"],
-				datasets: [{
-						label: 'Demand',
-						data: [90, 85, 100, 105],
-						backgroundColor: [
-							'#0062ff', '#0062ff', '#0062ff', '#0062ff',
-						],
-						borderColor: [
-							'#0062ff', '#0062ff', '#0062ff', '#0062ff',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Supply',
-						data: [200, 200, 200, 200],
-						backgroundColor: [
-							'#eef0fa', '#eef0fa', '#eef0fa', '#eef0fa',
-						],
-						borderColor: [
-							'#eef0fa', '#eef0fa', '#eef0fa', '#eef0fa',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var myBalanceOptions = {
-				scales: {
-					xAxes: [{
-						stacked: true,
-						barPercentage: .7,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#111",
-							fontSize: 12,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: false,
-						gridLines: {
-							drawBorder: true,
-							display: false,
-							color: "#eef0fa",
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#my-balance").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: myBalanceData,
-				options: myBalanceOptions
-			});
+    if ($("#cpu-performance").length) {
+        var r, y = (r = document.getElementById("cpu-performance").getContext("2d")).createLinearGradient(0, 0, 0, 0);
+        y.addColorStop(0, "rgba(255, 255, 225,0.5)"), y.addColorStop(1, "rgba(255, 255, 225,0.5)");
+        new Chart(r, {
+            type: "line",
+            data: {
+                labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", "Day 11", "Day 12", "Day 13", "Day 14", "Day 15", "Day 16", "Day 17", "Day 18", "Day 19", "Day 20", "Day 21", "Day 22", "Day 23", "Day 24", "Day 25", "Day 26", "Day 27", "Day 28", "Day 29", "Day 30", "Day 31", "Day 32", "Day 33", "Day 34", "Day 35", "Day 36", "Day 37", "Day 38", "Day 39", "Day 40", "Day 41", "Day 42", "Day 43", "Day 44", "Day 45", "Day 46", "Day 47", "Day 48", "Day 49", "Day 50", "Day 51", "Day 52", "Day 53", "Day 54", "Day 55", "Day 56", "Day 57", "Day 58", "Day 59", "Day 60", "Day 61", "Day 62", "Day 63", "Day 64", "Day 65", "Day 66", "Day 67", "Day 68", "Day 69", "Day 70", "Day 71", "Day 72", "Day 73", "Day 74", "Day 75", "Day 76", "Day 77", "Day 78", "Day 79", "Day 80", "Day 81", "Day 82"],
+                datasets: [{
+                    label: "CPU Usage",
+                    data: [56, 55, 59, 59, 59, 57, 56, 57, 54, 56, 58, 57, 59, 58, 59, 57, 55, 56, 54, 52, 49, 48, 50, 50, 46, 45, 49, 50, 52, 53, 52, 55, 54, 53, 56, 55, 56, 55, 54, 55, 57, 58, 56, 55, 56, 57, 58, 59, 58, 57, 55, 53, 52, 55, 57, 55, 54, 52, 55, 57, 56, 57, 58, 59, 58, 59, 57, 56, 55, 57, 58, 59, 60, 62, 60, 59, 58, 57, 56, 57, 56, 58, 59],
+                    borderColor: chartColors[0],
+                    backgroundColor: y,
+                    borderWidth: 3
+                }, {
+                    label: "Ram Usage",
+                    data: [32, 25, 29, 29, 29, 27, 26, 27, 24, 26, 28, 27, 29, 28, 29, 27, 25, 26, 24, 20, 18, 21, 19, 17, 14, 13, 16, 15, 17, 18, 19, 22, 20, 23, 21, 25, 24, 22, 25, 27, 25, 26, 24, 20, 18, 18, 18, 22, 19, 23, 25, 23, 22, 25, 27, 25, 24, 22, 25, 27, 26, 27, 28, 29, 28, 29, 27, 26, 25, 27, 28, 29, 26, 27, 25, 29, 28, 27, 26, 27, 26, 28, 29],
+                    borderColor: chartColors[1],
+                    backgroundColor: "rgba(255,255,255,0.05)",
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: !0,
+                animation: {
+                    animateScale: !0,
+                    animateRotate: !0
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        bottom: 0
+                    }
+                },
+                legend: !1,
+                stepsize: 150,
+                min: 0,
+                max: 350,
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: !1,
+                            drawBorder: !1
+                        },
+                        ticks: {
+                            display: !1,
+                            max: 150
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: !1,
+                            drawBorder: !1
+                        },
+                        ticks: {
+                            display: !1
+                        }
+                    }]
+                }
+            }
+        })
     }
-
-		if ($("#my-balance-dark").length) {
-			var myBalanceDarkData = {
-				labels: ["Jan", "Feb", "Mar", "Apr"],
-				datasets: [{
-						label: 'Demand',
-						data: [90, 85, 100, 105],
-						backgroundColor: [
-							'#0062ff', '#0062ff', '#0062ff', '#0062ff',
-						],
-						borderColor: [
-							'#0062ff', '#0062ff', '#0062ff', '#0062ff',
-						],
-						borderWidth: 1,
-						fill: false
-					},
-					{
-						label: 'Supply',
-						data: [200, 200, 200, 200],
-						backgroundColor: [
-							'#2b2b36', '#2b2b36', '#2b2b36', '#2b2b36',
-						],
-						borderColor: [
-							'#2b2b36', '#2b2b36', '#2b2b36', '#2b2b36',
-						],
-						borderWidth: 1,
-						fill: false
-					}
-				]
-			};
-			var myBalanceDarkOptions = {
-				scales: {
-					xAxes: [{
-						stacked: true,
-						barPercentage: .7,
-						position: 'bottom',
-						display: true,
-						gridLines: {
-							display: false,
-							drawBorder: false,
-							drawTicks: false
-						},
-						ticks: {
-							display: true, //this will remove only the label
-							stepSize: 500,
-							fontColor: "#fff",
-							fontSize: 12,
-							padding: 10,
-						}
-					}],
-					yAxes: [{
-						stacked: false,
-						display: false,
-						gridLines: {
-							drawBorder: true,
-							display: false,
-							color: "#eef0fa",
-							drawTicks: false,
-							zeroLineColor: 'rgba(90, 113, 208, 0)',
-						},
-						ticks: {
-							display: true,
-							beginAtZero: true,
-							stepSize: 200,
-							fontColor: "#a7afb7",
-							fontSize: 14,
-							callback: function(value, index, values) {
-								return value + 'k';
-							},
-
-						},
-					}]
-				},
-				legend: {
-					display: false
-				},
-				tooltips: {
-					backgroundColor: 'rgba(0, 0, 0, 1)',
-				},
-				plugins: {
-					datalabels: {
-						display: false,
-						align: 'center',
-						anchor: 'center'
-					}
-				}
-			};
-			var barChartCanvas = $("#my-balance-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'bar',
-				data: myBalanceDarkData,
-				options: myBalanceDarkOptions
-			});
-		}
-
-		if ($("#prediction-1").length) {
-			var graphGradient = document.getElementById("prediction-1").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 80);
-			saleGradientBg.addColorStop(0, 'rgba(164,97,216, 1)');
-			saleGradientBg.addColorStop(1, 'rgba(255, 255, 255, 0.27)');
-			var prediction1Data = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 10, 6, 12, 7, 14, 16],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#a461d8'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction1Options = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-
-			};
-
-			var barChartCanvas = $("#prediction-1").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction1Data,
-				options: prediction1Options,
-			});
-		}
-		if ($("#prediction-1-dark").length) {
-			var graphGradient = document.getElementById("prediction-1-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 75);
-			saleGradientBg.addColorStop(0, 'rgba(164,97,216, 1)');
-			saleGradientBg.addColorStop(1, 'rgba(24, 24, 36, 0.27)');
-			var prediction1DataDark = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [5, 10, 6, 12, 7, 14, 16],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#a461d8'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction1OptionsDark = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-
-			};
-
-			var barChartCanvas = $("#prediction-1-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction1DataDark,
-				options: prediction1OptionsDark,
-			});
-    }
-
-		if ($("#prediction-2").length) {
-			var graphGradient = document.getElementById("prediction-2").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 80);
-			saleGradientBg.addColorStop(0, 'rgba(164,97,216, 1)');
-			saleGradientBg.addColorStop(1, 'rgba(255, 255, 255, 0.27)');
-
-			var prediction1Data = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [16, 14, 7, 12, 6, 10, 5],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#a461d8'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction1Options = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-
-			var barChartCanvas = $("#prediction-2").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction1Data,
-				options: prediction1Options,
-
-			});
-		}
-		if ($("#prediction-2-dark").length) {
-			var graphGradient = document.getElementById("prediction-2-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 75);
-			saleGradientBg.addColorStop(0, 'rgba(164,97,216, 1)');
-			saleGradientBg.addColorStop(1, 'rgba(24, 24, 36, 0.27)');
-
-			var prediction2DataDark = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [16, 14, 7, 12, 6, 10, 5],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#a461d8'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction2OptionsDark = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-
-			var barChartCanvas = $("#prediction-2-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction2DataDark,
-				options: prediction2OptionsDark,
-
-			});
-    }
-
-		if ($("#prediction-3").length) {
-			var graphGradient = document.getElementById("prediction-3").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 80);
-			saleGradientBg.addColorStop(0, '#0062ff');
-			saleGradientBg.addColorStop(1, 'rgba(255, 255, 255, 0.27)');
-			var prediction1Data = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [3, 4, 2, 3, 1, 2, 3],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction1Options = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#prediction-3").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction1Data,
-				options: prediction1Options,
-			});
-		}
-
-		if ($("#prediction-3-dark").length) {
-			var graphGradient = document.getElementById("prediction-3-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 75);
-			saleGradientBg.addColorStop(0, '#0062ff');
-			saleGradientBg.addColorStop(1, 'rgba(24, 24, 36, 0.27)');
-			var prediction3DataDark = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [3, 4, 2, 3, 1, 2, 3],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction3OptionsDark = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#prediction-3-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction3DataDark,
-				options: prediction3OptionsDark,
-			});
-    }
-
-		if ($("#prediction-4").length) {
-			var graphGradient = document.getElementById("prediction-4").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 110);
-			saleGradientBg.addColorStop(0, '#0062ff');
-			saleGradientBg.addColorStop(1, 'rgba(255, 255, 255, 0.27)');
-			var prediction1Data = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [3, 2, 1, 3, 2, 4, 3],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction1Options = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#prediction-4").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction1Data,
-				options: prediction1Options,
-			});
-		}
-		if ($("#prediction-4-dark").length) {
-			var graphGradient = document.getElementById("prediction-4-dark").getContext('2d');;
-			var saleGradientBg = graphGradient.createLinearGradient(25, 0, 25, 110);
-			saleGradientBg.addColorStop(0, '#0062ff');
-			saleGradientBg.addColorStop(1, 'rgba(24, 24, 36, 0.27)');
-			var prediction4DataDark = {
-				labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-				datasets: [{
-					label: 'Margin',
-					data: [3, 2, 1, 3, 2, 4, 3],
-					backgroundColor: saleGradientBg,
-					borderColor: [
-						'#0062ff'
-					],
-					borderWidth: 3,
-					fill: true,
-				}],
-			};
-			var prediction4OptionsDark = {
-				scales: {
-					yAxes: [{
-						display: false,
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-					xAxes: [{
-						display: false,
-						position: 'bottom',
-						gridLines: {
-							drawBorder: false,
-							display: false,
-							drawTicks: false
-						},
-						ticks: {
-							beginAtZero: true,
-							stepSize: 10
-						}
-					}],
-				},
-				legend: {
-					display: false,
-				},
-				elements: {
-					point: {
-						radius: 0
-					},
-					line: {
-						tension: .4
-					}
-				},
-				tooltips: {
-					backgroundColor: 'rgba(2, 171, 254, 1)',
-				},
-			};
-			var barChartCanvas = $("#prediction-4-dark").get(0).getContext("2d");
-			// This will get the first returned node in the jQuery collection.
-			var barChart = new Chart(barChartCanvas, {
-				type: 'line',
-				data: prediction4DataDark,
-				options: prediction4OptionsDark,
-			});
-    }
-
-	});
-})(jQuery);
+});

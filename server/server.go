@@ -19,10 +19,27 @@ func main(){
   if err != nil{
     log.Println("[-]  Error converting port into string: ",err)
   }*/
-  fmt.Println("[+]    Starting HTTP server at 5000")
-  err := http.ListenAndServe("0.0.0.0:5000",nil)
-  if err !=  nil {
-    log.Println("[-]   Error starting http server on port ")
+  go func(){
+    for {
+      //keep checking the temp table and update it.
+    }
+  }()
+  go func(){
+    fmt.Println("[+]    Starting HTTP server at 5000")
+    err := http.ListenAndServe("0.0.0.0:5000",nil)
+    if err !=  nil {
+      log.Println("[-]   Error starting http server on port ")
+    }
+  }()
+  fmt.Println("[+]    Starting HTTPS Server AT 5151")
+  err := http.ListenAndServeTLS(
+    "0.0.0.0:5151",
+    "certs/wheagle_server_cert.pem",
+    "certs/wheagle_server_key.pem",
+    nil,
+  )
+  if err != nil {
+    log.Fatal("Error creating server. ", err)
   }
 }
 

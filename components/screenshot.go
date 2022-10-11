@@ -24,7 +24,7 @@ func Save(img *image.RGBA,filePath string){
   png.Encode(file,img)
 }
 
-func takeScreenShot()(error,bool){
+func TakeScreenShot()(error,bool){
   var rp = "No Active display found"
   n := screenshot.NumActiveDisplays()
   if n <= 0{

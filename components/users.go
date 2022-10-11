@@ -18,7 +18,7 @@ type User struct{
   UserName string
   Email string
   Password string
-  Active string
+  Active bool
   Anonymous bool
   Verify bool
   Admin bool
@@ -30,8 +30,17 @@ func CreateUser(u User)error{
   return  nil
 }
 
+
 func ViewUser(userId string)(*User,error){
-  return nil.nil
+  var m Minion
+  row := db.QueryRow("SELECT * FROM `malbot`.`minion` WHERE minionid	 = ?;",minionId)
+  err := row.Scan(&m.MinionId,&m.Name,&m.UName,&m.UserId,&m.GroupId,&m.HomeDir,&m.Os,&m.Description,&m.Installed,&m.MotherShipId,&m.LastSeen,&m.CreatedAt,&m.UpdatedAt)
+  if err != nil{
+    e := LogErrorToFile("sql",fmt.Sprintf("EVM %s %s",minionId,err))
+    logError(e)
+    return nil,errors.New(fmt.Sprintf("Server encountered an error while viewing minon with id of %s",minionId))
+  }
+  return &m,nil
 }
 
 func ListMyUsers(ownerId string,active bool)([]User,error){
@@ -41,6 +50,29 @@ func ListMyUsers(ownerId string,active bool)([]User,error){
 
 func AdminListUsers(active bool)([]User,error){
   return nil,nil
+}
+
+func ListAllUsers()([]User,error){
+  stmt := "SELECT * FROM `malbot`.`minion` ORDER BY updated_at ASC;"
+  rows,err := db.Query(stmt)
+  if err != nil{
+    e := LogErrorToFile("sql",fmt.Sprintf("ELAMM: %s",err))
+    logError(e)
+    return nil,errors.New("Server encountered an error while listing all my minions.")
+  }
+  defer rows.Close()
+  var minions []Minion
+  for rows.Next(){
+    var m Minion
+    err = rows.Scan(&m.MinionId,&m.Name,&m.UName,&m.UserId,&m.GroupId,&m.HomeDir,&m.Os,&m.Description,&m.Installed,&m.MotherShipId,&m.LastSeen,&m.CreatedAt,&m.UpdatedAt)
+    if err != nil{
+      e := LogErrorToFile("sql",fmt.Sprintf("ESFAMM: %s",err))
+      logError(e)
+      return nil,errors.New("Server encountered an error while listing all my minions.")
+    }
+    minions = append(minions,m)
+  }
+  return minions,nil
 }
 
 func MarkUserAsInActive(ownerId,userId string)error{

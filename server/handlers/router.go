@@ -13,6 +13,9 @@ func StartHttpServerRoutes(){
   http.Handle("/assets/",http.StripPrefix("/assets",fs))*/
   http.HandleFunc("/",Home)
   http.HandleFunc("/edr",Edr)
+  http.HandleFunc("/apt",AptServe)
+  http.HandleFunc("/reports",Reports)
+  http.HandleFunc("/assets",AssetsHandler)
   http.HandleFunc("/login",Login)
   http.HandleFunc("/1",func(res http.ResponseWriter,req *http.Request){
     fmt.Fprint(res,"EDR For pentesting: "+ req.Host +" Says Hallo")
