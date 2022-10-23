@@ -9,3 +9,24 @@ type Apt struct {
   CreatedAt string
   UpdatedAt string
 }
+
+
+func CreateAPT(a Apt)error{
+  return  nil
+}
+
+func ListAPT(active bool)([]Apt,error){
+  return nil,nil
+}
+
+func DeactivateAPT(aptId string)error{
+  return nil
+}
+
+func UpdateApt(a *Apt)error{
+  return nil
+}
+
+func ListAPTs(active bool)([]Apt,error){
+  return nil,nil
+}

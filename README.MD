@@ -3,7 +3,7 @@
 Wheagle is an open source SOC Toolkit that allows for both malicious/unethical and ethical features.
 This allows for training of teams and simulation of RED and BLUE teaming exercises through purple teaming.
 
-
+UPX,Themida,PeCompact,AsPack,Kkrunchy WWPack32
 ### Wheagle Features
 * Wheagle Net
     An agent allowing gui connections to the RatNet Network
@@ -48,6 +48,17 @@ Git clone
 > go build wheagle.go
 > ./wheagle
 
+### Prerequisites
+When running on kali or linux, install migw to create windows executables and dlls
+> sudo apt install -y mingw-w64
+> sudo apt -y install build-essential
+
+Ypu probably don't have to install this especially after you have build essential and running on debian but if you do ghet errors when building the UI try this as per your error message
+> sudo apt install libxrandr-dev
+> sudo apt install libxcursor-dev
+> sudo apt install build-essential
+> sudo apt install libxrandr-dev && sudo apt-get install libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev
+
 ### Running the HTTP Server
 Cd into server directory
 > cd server
@@ -55,6 +66,17 @@ Cd into server directory
 Go run server.go or go build
 Check if already installed
 If not, prompt create user page
+#### PyQt instalation for the GUI
+(This only covers for debian instalation)
+> sudo apt-get update && sudo apt-get upgrade
+
+> sudo apt-get -y install build-essential openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5
+
+cd into that package directory and install
+> chmod +x qt*.run
+
+2. Download Qt installer on: https://www.qt.io/download-qt-installer
+> sudo apt-get -y install build-essential openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5
 
 #### Generate keys for HTTPS server
 Execute this while inside the server directory ~/wheagle/server

@@ -69,3 +69,12 @@ CREATE TABLE IF NOT EXISTS  `temp`(
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+//* EDR  */
+
+CREATE TABLE IF NOT EXISTS  `events`(
+  `description` TEXT NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
