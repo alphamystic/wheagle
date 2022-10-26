@@ -1,33 +1,33 @@
 package workers
 
-type Job struct{
+type Task struct{
   OwnerId string
-  JobId string
-  JobName string
-  JobType bool//cmd or internal cmd
+  TaskId string
+  Name string
+  Type bool//cmd or internal cmd
   Description string
   Handled bool
   CreatedAt string
   UpdatedAt string
 }
 
-func CreateJob()error{
+func CreateTask()error{
   return nil
 }
 
-func ListJobs(complete bool)([]Job,error){
+func ListTask(complete bool)([]Task,error){
   return nil,nil
 }
 
-func ListMyJobs(userId,jobId string)([]Job,error){
+func ListMyTask(userId,jobId string)([]Task,error){
   return nil,nil
 }
 
-func MarkAsHandled(jobId,ownerId string,isAdmin bool)error{
+func MarkAsHandled(taskId,ownerId string,isAdmin bool)error{
   //remeber to check if user is admin to remove
   return nil
 }
 
-func ViewJob(jobId string)(*Job,error){
+func ViewTask(taskId string)(*Task,error){
   return nil,nil
 }

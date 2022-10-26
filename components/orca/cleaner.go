@@ -1,4 +1,4 @@
-package scanner
+package orca
 
 /*
   Enumerates the host looking for iocs and cleaning them out
@@ -10,5 +10,9 @@ type Cleaner interface{
 
 type Cleaned struct{
   Cleaned false//if no ioc found return false
-  Details []string
+  Details []CleanData
+}
+
+type CleanData struct{
+  Details string
 }

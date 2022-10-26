@@ -7,8 +7,15 @@ import (
   //"github.com/alphamystic/wheagle/components"
 )
 
+//store this incide a cookie
+type Data struct{
+  UserId string
+  darkMode bool
+  UserName string
+  Anonymous bool
+}
 
-
+//type Wheagle {}interface
 
 func Home(res http.ResponseWriter,req *http.Request){
   if req.Method != "GET"{
@@ -69,14 +76,21 @@ func Login(res http.ResponseWriter,req *http.Request){
     req.ParseForm()
     pass := req.FormValue("password")
     email := req.FormValue("email")
-    isAuth,paId := Authenticate(pass,email)
+    isAuth,userId,userName,_ := Authenticate(pass,email)
     if !isAuth {
       tpl.ExecuteTemplate(res,"login.html","Wrong username or password")
       return
     }
+    //set data values
+    data := Data{
+      UserId: userId,
+      darkMode: true,
+      UserName: userName,
+      Anonymous: false,
+    }
     //set session
     session,_ := store.Get(req,"session")
-    session.Values["PaId"] = paId
+    session.Values["Data"] = data
     session.Save(req,res)
     //redirect to dashboard or get the dash data and execute dash
     http.Redirect(res,req,"/",http.StatusSeeOther)

@@ -1,8 +1,8 @@
 
 # WHEAGLE
-Wheagle is an open source SOC Toolkit that allows for both malicious/unethical and ethical features.
+Wheagle is an open source SOC Toolkit that allows for both malicious/unethical and ethical features. It's a purple teaming toolkit
 This allows for training of teams and simulation of RED and BLUE teaming exercises through purple teaming.
-
+One can create their own payload generator and use wheagle as it,s c2 or have your own EDR endpoint and seive through results with your SOC team
 UPX,Themida,PeCompact,AsPack,Kkrunchy WWPack32
 ### Wheagle Features
 * Wheagle Net
@@ -29,15 +29,21 @@ Wheagle servers:
 1. HTTP Server
     Admin panel http/https server
 2. FTP Server
+    For uploading virus type/files (I have this somewhere and forgot where)
 3. SSH Server
+    TO be implemented soon
 4. TCP Server
+    Serves for both tls creating simple listeners
 5. DNS Server
+    Similar to tcp and for exfil
 
 
 
 ## Regards
-All thankks to some great projects that are in play here removing most bottleneck for me
+All thanks to some great projects that are in play here removing most bottleneck for me
 1. Screenshot at github.com/kbinani/screenshot
+2. Sliver for basics for a C2 (Will try creating a dll/so for this) https://github.com/BishopFox/sliver
+3. Merlin also helped in basic C2 Knowledge (Will also create adlll for this) https://github.com/Ne0nd0g/merlin
 
 
 
@@ -53,11 +59,6 @@ When running on kali or linux, install migw to create windows executables and dl
 > sudo apt install -y mingw-w64
 > sudo apt -y install build-essential
 
-Ypu probably don't have to install this especially after you have build essential and running on debian but if you do ghet errors when building the UI try this as per your error message
-> sudo apt install libxrandr-dev
-> sudo apt install libxcursor-dev
-> sudo apt install build-essential
-> sudo apt install libxrandr-dev && sudo apt-get install libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev
 
 ### Running the HTTP Server
 Cd into server directory
@@ -75,8 +76,6 @@ If not, prompt create user page
 cd into that package directory and install
 > chmod +x qt*.run
 
-2. Download Qt installer on: https://www.qt.io/download-qt-installer
-> sudo apt-get -y install build-essential openssl libssl-dev libssl1.0 libgl1-mesa-dev libqt5x11extras5
 
 #### Generate keys for HTTPS server
 Execute this while inside the server directory ~/wheagle/server
@@ -110,5 +109,5 @@ Execute this while inside the server directory ~/wheagle/server
 
 
 ##COLLABORATION
-Whatever you do with your git push please don't change our Awesome certs. DO NOT EVEN TOUCH IT UNLESS YOU ARE CHANGING ONLY YOURS.
+Whatever you do with your git push please don't change our Awesome certs.(But you can and should change yours locally) DO NOT EVEN TOUCH IT UNLESS YOU ARE CHANGING ONLY YOURS.
 Other than that I'm new at this so let's see what happens

@@ -16,6 +16,7 @@ import(
   "path/filepath"
   "crypto/sha256"
   "text/template"
+  "github.com/google/uuid"
 )
 
 
@@ -160,6 +161,12 @@ func ExecuteCommand(cmd string, args string)string{
     return string(ss)
   }
   return string(out[:])
+}
+
+
+func GenerateUUID()string{
+  id := uuid.New()
+  return id.String()
 }
 
 //@TODO Remove this for brevity and change to methods of a bot (call this iniatializer)

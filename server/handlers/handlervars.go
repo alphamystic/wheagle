@@ -1,5 +1,8 @@
 package handlers
 
+/*
+  * Contains helper functions for server running without unnescescaryu imports
+*/
 import (
   "log"
   "fmt"
@@ -19,6 +22,7 @@ var now = time.Now()
 var currentTime = now.Format("2006-01-02 15:04:05")
 var tpl  *template.Template
 var store = sessions.NewCookieStore([]byte("WHEAGLE Pentesting Suite System"))
+var DarkMode bool
 
 func init(){
   var err error
@@ -30,28 +34,28 @@ func init(){
   if err != nil{
     log.Println("[-]  Error getting html templates: ",err)
   }
+  DarkMode = true
   log.Println("[+] Parsed the templates")
 }
 
 
 
-func Authenticate(password,email string)(bool,string){
-  var userEmail,hash,userId string
-  stmt := "SELECT email,userid,password FROM `prezo`.`users` WHERE email = ?;"
+func Authenticate(password,email string)(bool,string,string,string){
+  var userEmail,userName,hash,userId,role string
+  stmt := "SELECT userid,username,email,password,role FROM `siapp`.`users` WHERE email = ?;"
   row := db.QueryRow(stmt,email)
-  //defer db.Close()
-  err := row.Scan(&userEmail,&userId,&hash)
+  err := row.Scan(&userId,&userName,&userEmail,&hash,&role)
   if err != nil{
     e := utils.LogErrorToFile("sql",fmt.Sprintf("Error scanning rows for authentication %s",err))
     utils.Logerror(e)
-    return false,userId
+    return false,userId,userName,role
   }
   err = bcrypt.CompareHashAndPassword([]byte(hash),[]byte(password))
   if err != nil{
     e := utils.LogErrorToFile("auth",fmt.Sprintf("Wrong login attempt for email %s with password %s  %s",email,password,err))
     utils.Logerror(e)
-    return false,userId
+    return false,userId,userName,role
   }
-  fmt.Println("User id during authentication: ",userId)
-  return true,userId
+  fmt.Sprintf("User id is %s with role of %s",userId,role)
+  return true,userId,userName,role
 }

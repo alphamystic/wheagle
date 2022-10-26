@@ -14,12 +14,7 @@ package edr
   https://devblogs.microsoft.com/scripting/use-powershell-to-query-all-event-logs-for-recent-events/
 */
 
-const (
-  processCreate = iota + 1
-  processChanged
-  networkConnection
-  servicesStatusChanged
-)
+
 type Event interface{
   ProcesCreate() *Details //eventid 1
   ProcessChanged() *Details //eventid 2
@@ -46,7 +41,8 @@ type Event interface{
   FileDelete() *Details //event id 23
   ClipBoardChange() *Details //event id 24
   ProcessTampering() *Details //event id 25 Process image change
-  Event255() *Details //event id 26 Sysmon eror
+  Event255() *Details //event id 26 Sysmon error
+  FileBlockExecutable() *Details // event id 27 (Still on test mode) https://www.huntandhackett.com/blog/bypassing-sysmon
 }
 
 type Detail struct{
@@ -54,7 +50,6 @@ type Detail struct{
   ThreatLevel int
   UserId string
   Description string
-  Comment string
   EventType int
   Handled bool  //status
   eventData *EventData

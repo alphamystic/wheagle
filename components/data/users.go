@@ -89,11 +89,11 @@ func CheckIfAdmin(adminId string)bool{
 }
 
 
-func Authenticate(password,email string)(bool,string,string){
-  var userEmail,hash,userId,role string
-  stmt := "SELECT userid,email,password,role FROM `siapp`.`users` WHERE email = ?;"
+func Authenticate(password,email string)(bool,string,string,string){
+  var userEmail,userName,hash,userId,role string
+  stmt := "SELECT userid,username,email,password,role FROM `siapp`.`users` WHERE email = ?;"
   row := db.QueryRow(stmt,email)
-  err := row.Scan(&userId,&userEmail,&hash,&role)
+  err := row.Scan(&userId,&userName,&userEmail,&hash,&role)
   if err != nil{
     e := utils.LogErrorToFile("sql",fmt.Sprintf("Error scanning rows for authentication %s",err))
     utils.LogError(e)
@@ -106,5 +106,5 @@ func Authenticate(password,email string)(bool,string,string){
     return false,userId,role
   }
   fmt.Sprintf("User id is %s with role of %s",userId,role)
-  return true,userId,role
+  return true,userId,userName,role
 }

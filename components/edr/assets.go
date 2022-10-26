@@ -9,7 +9,7 @@ type Asset struct{
   Name string `json:"asset_name"`
   AId string  `json:"asset_id"`
   Description string  `json:"description"`
-  Active string `json:"active"`
+  Active bool `json:"active"`
   CreatedAt string  `json:"createdat"`
   UpdatedAt string  `json:"updatedat"`
 }

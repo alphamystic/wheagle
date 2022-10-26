@@ -1,10 +1,9 @@
 package main
 
 import (
-//  "os"
+  "os"
   "log"
   "fmt"
-  "flag"
   "golang.org/x/net/context"
   "google.golang.org/grpc"
   "github.com/alphamystic/wheagle/beacon/protos/stream"
@@ -18,7 +17,7 @@ func main(){
     conn *grpc.ClientConn
     client stream.AdminClient
   )
-  _ = flag.String("cmnd","foo","Command to execute")
+
   opts = append(opts,grpc.WithInsecure())
   if conn,err = grpc.Dial(fmt.Sprintf("localhost:%d",5001),opts...); err != nil{
     log.Fatalf("[-] Error connecting to admin server: %v",err)
@@ -28,7 +27,7 @@ func main(){
   var cmd *stream.Command = new(stream.Command)
   //var cmd = new(stream.Command)
   //fmt.Sprintf("Coomand give: %s",*cmnd)
-  cmd.In = "id"//*cmnd
+  cmd.In = os.Args[1]
   ctx := context.Background()
   cmd,err = client.RunCommand(ctx,cmd)
   //fmt.Println("This was the command given: ",cmd.In)

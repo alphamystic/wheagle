@@ -5,10 +5,12 @@ package stream;
 service Implant {
   rpc FetchCommand (Empty) returns (Command);
   rpc SendOutput (Command) returns (Empty);
+  rpc RegisterImplant (ImplantAgent) returns (Session);
 }
 
 service Admin {
   rpc RunCommand (Command) returns (Command);
+  rpc RunImplantCommand (Session,Command) returns (Command);
 }
 message Command {
   string In = 1;
@@ -16,4 +18,15 @@ message Command {
 }
 
 message Empty {
+}
+
+message Session {
+  string SessionId = 1;
+  string ClientId = 2;
+  string HostName = 3;
+  string Arch = 4;
+}
+
+message ImplantAgent {
+  string AgentId = 1;
 }
