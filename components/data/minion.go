@@ -3,6 +3,10 @@ package data
 import (
   "net"
 )
+
+/* A minion is rat of your choosing, from rootkit to a normal agent
+  This is what wheagle uses it as an agent
+*/
 type Minion struct{
   MinionId string `json:"minionid"`
   Name string `json:"name"`

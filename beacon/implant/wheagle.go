@@ -115,6 +115,7 @@ func Start(done bool)(*Minion,error){
   return &minion,nil
 }
 
+//create a hash for different hashes
 func CreateHash(data interface{})string{
   hash := sha256.New()
   hash.Write([]byte(fmt.Sprintf("%v",data)))

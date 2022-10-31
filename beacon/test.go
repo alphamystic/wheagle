@@ -17,7 +17,6 @@ func main(){
     opts []grpc.DialOption
     conn *grpc.ClientConn
     client stream.ImplantClient
-    interactMode bool
   )
 
   opts = append(opts,grpc.WithInsecure())
@@ -52,15 +51,3 @@ func main(){
     client.SendOutput(ctx,cmd)
   }
 }
-
-
-/*
-  TODO
-  create a client
-    1. TCP
-    2. TCP TLS Enabled
-    3. HTTP
-    4. HTTPS
-    5. UDP (If it will allow)
-    6. DNS
-*/

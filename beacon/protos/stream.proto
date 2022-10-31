@@ -5,28 +5,78 @@ package stream;
 service Implant {
   rpc FetchCommand (Empty) returns (Command);
   rpc SendOutput (Command) returns (Empty);
+  rpc FetchTask (Empty) returns (Task);
+  rpc SendTask (Task) returns (Empty);
   rpc RegisterImplant (ImplantAgent) returns (Session);
 }
 
 service Admin {
   rpc RunCommand (Command) returns (Command);
-  rpc RunImplantCommand (Session,Command) returns (Command);
+  rpc RegisterImplant (ImplantAgent) returns (Session);
+  rpc ImplantInteract (Interact) returns (Interact);
+}
+
+message Interact {
+  Session = 1;
+  Command = 2;
 }
 message Command {
   string In = 1;
   string Out = 2;
 }
 
+message Task{
+  string Tin = 1;
+  string Tout = 2;
+}
+
 message Empty {
+}
+
+message Mothership {
+  string MUrl = 1;
+}
+
+message ProxyUrl {
+  string PUrl = 1;
 }
 
 message Session {
   string SessionId = 1;
   string ClientId = 2;
-  string HostName = 3;
-  string Arch = 4;
+  repeated Mothership Mothership = 3;
+  bool InteractMode = 4;
+  string Transoprt = 5;
+  repeated ProxyUrl ProxyUrls = 6;
+  string HostName = 7;
+  string Arch = 8;
+  string ActiveC2 = 9;
+  string IsAlive = 10;
 }
 
 message ImplantAgent {
   string AgentId = 1;
+  Session Sessioin = 2;
 }
+
+message Minion {
+  string MinionId = 1;
+  string MSession = 2;
+  string HostName = 3;
+  string Username = 4;
+}
+UserId string  `json:"uid"`
+GroupId string  `json:"groupid"`
+HomeDir string `json:"homedir"`
+MinionType string `json:"miniontype"` //bot or agent
+Os  string  `json:"ostype"`
+Description string `json:"description"`
+Installed bool `json:"installed"`
+MotherShipId string `json:"mothershipid"`
+Ip net.Ip  `json:"ip"`
+OwnerId string  `json:'ownerid'`
+LastSeen string `json:"lastseen"`
+CreatedAt string  `json:"createdat"`
+UpdatedAt string  `json:"updatedat"`
+
+message SendFile {}
