@@ -53,6 +53,10 @@ func main(){
   }
 }
 
+/*
+  Implements its own session when generated
+*/
+
 
 /*
   TODO

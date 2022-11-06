@@ -9,26 +9,40 @@ import (
 
 
 type implantServer struct{
-  work, output chan *stream.Command
+  ComandWork, Coutput chan *stream.Command
+  CommandTask, Toutput chan *stream.Task
+  CIntreractSession,CinteractCommandIn,CinteractCommandOut chan *stream.Session,chan *stream.Command
 }
 
 type adminServer struct{
-  work, output chan *stream.Command
+  ComandWork, Coutput chan *stream.Command
+  CommandTask, Toutput chan *stream.Task
+  CIntreractSession,CinteractCommandIn,CinteractCommandOut chan *stream.Session,chan *stream.Command
 }
 
 
-func NewImplantServer(work, output chan *stream.Command) *implantServer{
-  s := new(implantServer)
-  s.work = work
-  s.output = output
-  return s
+func NewImplantServer(cwork,coutput,ctask,taskout,intcomin,intcomout chan *stream.Command,interactSession chan *stream.Session) *implantServer{
+  is := new(implantServer)
+  is.ComandWork = cwork
+  is.Coutput = coutput
+  is.CommandTask = ctask
+  is.Toutput = taskout
+  is.CIntreractSession = interactSession
+  is.CinteractCommandIn = intcomin
+  is.CinteractCommandOut = intcomout
+  return is
 }
 
 func NewAdminServer(work, output chan *stream.Command) *adminServer{
-  s := new(adminServer)
-  s.work = work
-  s.output = output
-  return s
+  is := new(implantServer)
+  is.ComandWork = cwork
+  is.Coutput = coutput
+  is.CommandTask = ctask
+  is.Toutput = taskout
+  is.CIntreractSession = interactSession
+  is.CinteractCommandIn = intcomin
+  is.CinteractCommandOut = intcomout
+  return is
 }
 
 func (s *implantServer) FetchCommand(ctx context.Context, empty *stream.Empty)(*stream.Command,error){

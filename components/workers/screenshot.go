@@ -1,4 +1,4 @@
-package wokers
+package workers
 
 import (
   "os"

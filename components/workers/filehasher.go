@@ -1,4 +1,4 @@
-package wokers
+package workers
 
 import (
     "io/ioutil"

@@ -1,6 +1,6 @@
-package worker
+package workers
 
-type Plugins struct{
+type Plugins struct {
   Owner string
   Name string
   Hash string

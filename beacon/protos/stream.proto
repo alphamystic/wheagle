@@ -4,28 +4,39 @@ package stream;
 
 service Implant {
   rpc FetchCommand (Empty) returns (Command);
-  rpc SendOutput (Command) returns (Empty);
+  rpc SendCommandOutput (Command) returns (Empty);
   rpc FetchTask (Empty) returns (Task);
-  rpc SendTask (Task) returns (Empty);
+  rpc SendTaskOutput (Task) returns (Empty);
+  rpc FetchAll (Empty) returns (All);
+  rpc SendAll (All) returns (Empty);
   rpc RegisterImplant (ImplantAgent) returns (Session);
 }
 
 service Admin {
   rpc RunCommand (Command) returns (Command);
+  rpc RunTask (Task) returns (Task);
+  rpc RunAll (All) returns (All);
   rpc RegisterImplant (ImplantAgent) returns (Session);
   rpc ImplantInteract (Interact) returns (Interact);
 }
 
 message Interact {
-  Session = 1;
-  Command = 2;
+  Session session = 1;
+  Command Command = 2;
 }
+
 message Command {
   string In = 1;
   string Out = 2;
 }
 
-message Task{
+message All{
+  Command Command = 1;
+  Interact Interact = 2;
+  Task Task = 3;
+}
+
+message Task {
   string Tin = 1;
   string Tout = 2;
 }
@@ -35,23 +46,27 @@ message Empty {
 
 message Mothership {
   string MUrl = 1;
+  string Protocol = 2;
 }
 
 message ProxyUrl {
   string PUrl = 1;
+  string Protocol = 2;
 }
 
 message Session {
   string SessionId = 1;
   string ClientId = 2;
-  repeated Mothership Mothership = 3;
+  repeated Mothership Motherships = 3;
   bool InteractMode = 4;
-  string Transoprt = 5;
+  string Transport = 5;
   repeated ProxyUrl ProxyUrls = 6;
   string HostName = 7;
   string Arch = 8;
   string ActiveC2 = 9;
   string IsAlive = 10;
+  int32 PID = 11;
+  bool IsPermanent = 12;
 }
 
 message ImplantAgent {
@@ -64,19 +79,34 @@ message Minion {
   string MSession = 2;
   string HostName = 3;
   string Username = 4;
+  string Userid = 5;
+  string GroupId = 6;
+  string Homedir = 7;
+  string MinionType = 8;
+  string OsType = 9;
+  string Description = 10;
+  bool Installed = 11;
+  string MothershipId = 12;
+  string MinionIp = 13;
+  string OwnerId = 14;
+  string Lastseen = 15;
+  string PID = 16;
+  bool Persistance = 17;
+  string PersistanceMode = 18;
 }
-UserId string  `json:"uid"`
-GroupId string  `json:"groupid"`
-HomeDir string `json:"homedir"`
-MinionType string `json:"miniontype"` //bot or agent
-Os  string  `json:"ostype"`
-Description string `json:"description"`
-Installed bool `json:"installed"`
-MotherShipId string `json:"mothershipid"`
-Ip net.Ip  `json:"ip"`
-OwnerId string  `json:'ownerid'`
-LastSeen string `json:"lastseen"`
-CreatedAt string  `json:"createdat"`
-UpdatedAt string  `json:"updatedat"`
 
-message SendFile {}
+message P2P {
+  string Address = 1;
+}
+message Peers {
+  repeated Peers Peer = 2;
+}
+
+message SendFile {
+  string Filename = 1;
+  bytes Data = 2;
+}
+
+message VideoRequest {
+  string Filename = 1;
+}

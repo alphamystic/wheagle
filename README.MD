@@ -1,5 +1,7 @@
 
 # WHEAGLE
+*This thing is un runable as a (whole) in general for now for a good reason, though if you can read code you can steal some stuff bypass defender and probably some Av's, if you do please don't upload to virus total or any online scanner*
+
 Wheagle is an open source SOC Toolkit that allows for both malicious/unethical and ethical features. It's a purple teaming toolkit
 This allows for training of teams and simulation of RED and BLUE teaming exercises through purple teaming.
 One can create their own payload generator and use wheagle as it,s c2 or have your own EDR endpoint and seive through results with your SOC team
@@ -63,6 +65,13 @@ When running on kali or linux, install migw to create windows executables and dl
 ### Running the HTTP Server
 Cd into server directory
 > cd server
+
+### Pulgins
+Wheagle use plugins to allow for personal toolilng withoutn having to implement a new CLI or GUI
+To generate your own plugins go to ~/wheagle/plugins/lib/name_of_plugin
+The name_of_plugin can be in go cpp or C, whichever your language you choose to write your own library.
+After compiling
+ All plugins are stored at ~/wheagle/plugins/binaries
 
 Go run server.go or go build
 Check if already installed

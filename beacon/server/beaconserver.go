@@ -10,8 +10,28 @@ import (
   "github.com/alphamystic/wheagle/beacon/protos/hb"
 )
 
+/* I honestly I'm supposed to turn this into a server library and yes, struct are the answer but first thing I noticed was I need an interface*/
 
-func main(){
+type GrpcServerData struct{
+  LHOST string
+  LPORT string
+  Protocol string
+  Address string
+}
+
+func Run(g GrpcServerData){
+  for {
+    switch {
+      case gd.Protocol == "tcp":
+        g.StartTcpServer()
+      default:
+        go func(){}()
+    }
+  }
+}
+
+func (g *GrpcServerData) StartServer()
+func (g *GrpcRevSevers) StartTcpServer()(*shell,error){
   var (
     implantListener,adminListener net.Listener
     err error

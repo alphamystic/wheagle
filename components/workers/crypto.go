@@ -1,4 +1,4 @@
-package wokers
+package workers
 
 
 import (
@@ -16,7 +16,6 @@ func Md5Hash(text string) string {
 	return hex.EncodeToString(hasher.Sum(nil))
 }
 
-
 func ComputeMD5(filePath string) []byte {
 	var result []byte
 	file, err := os.Open(filePath)
@@ -30,7 +29,6 @@ func ComputeMD5(filePath string) []byte {
 	}
 	return hash.Sum(result)
 }
-
 
 func Base64Encode(str string) string {
 	return base64.StdEncoding.EncodeToString([]byte(str))

@@ -24,6 +24,53 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Interact struct {
+	Session              *Session `protobuf:"bytes,1,opt,name=session,proto3" json:"session,omitempty"`
+	Command              *Command `protobuf:"bytes,2,opt,name=Command,proto3" json:"Command,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Interact) Reset()         { *m = Interact{} }
+func (m *Interact) String() string { return proto.CompactTextString(m) }
+func (*Interact) ProtoMessage()    {}
+func (*Interact) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{0}
+}
+
+func (m *Interact) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Interact.Unmarshal(m, b)
+}
+func (m *Interact) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Interact.Marshal(b, m, deterministic)
+}
+func (m *Interact) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Interact.Merge(m, src)
+}
+func (m *Interact) XXX_Size() int {
+	return xxx_messageInfo_Interact.Size(m)
+}
+func (m *Interact) XXX_DiscardUnknown() {
+	xxx_messageInfo_Interact.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Interact proto.InternalMessageInfo
+
+func (m *Interact) GetSession() *Session {
+	if m != nil {
+		return m.Session
+	}
+	return nil
+}
+
+func (m *Interact) GetCommand() *Command {
+	if m != nil {
+		return m.Command
+	}
+	return nil
+}
+
 type Command struct {
 	In                   string   `protobuf:"bytes,1,opt,name=In,proto3" json:"In,omitempty"`
 	Out                  string   `protobuf:"bytes,2,opt,name=Out,proto3" json:"Out,omitempty"`
@@ -36,7 +83,7 @@ func (m *Command) Reset()         { *m = Command{} }
 func (m *Command) String() string { return proto.CompactTextString(m) }
 func (*Command) ProtoMessage()    {}
 func (*Command) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bb17ef3f514bfe54, []int{0}
+	return fileDescriptor_bb17ef3f514bfe54, []int{1}
 }
 
 func (m *Command) XXX_Unmarshal(b []byte) error {
@@ -71,6 +118,108 @@ func (m *Command) GetOut() string {
 	return ""
 }
 
+type All struct {
+	Command              *Command  `protobuf:"bytes,1,opt,name=Command,proto3" json:"Command,omitempty"`
+	Interact             *Interact `protobuf:"bytes,2,opt,name=Interact,proto3" json:"Interact,omitempty"`
+	Task                 *Task     `protobuf:"bytes,3,opt,name=Task,proto3" json:"Task,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *All) Reset()         { *m = All{} }
+func (m *All) String() string { return proto.CompactTextString(m) }
+func (*All) ProtoMessage()    {}
+func (*All) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{2}
+}
+
+func (m *All) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_All.Unmarshal(m, b)
+}
+func (m *All) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_All.Marshal(b, m, deterministic)
+}
+func (m *All) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_All.Merge(m, src)
+}
+func (m *All) XXX_Size() int {
+	return xxx_messageInfo_All.Size(m)
+}
+func (m *All) XXX_DiscardUnknown() {
+	xxx_messageInfo_All.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_All proto.InternalMessageInfo
+
+func (m *All) GetCommand() *Command {
+	if m != nil {
+		return m.Command
+	}
+	return nil
+}
+
+func (m *All) GetInteract() *Interact {
+	if m != nil {
+		return m.Interact
+	}
+	return nil
+}
+
+func (m *All) GetTask() *Task {
+	if m != nil {
+		return m.Task
+	}
+	return nil
+}
+
+type Task struct {
+	Tin                  string   `protobuf:"bytes,1,opt,name=Tin,proto3" json:"Tin,omitempty"`
+	Tout                 string   `protobuf:"bytes,2,opt,name=Tout,proto3" json:"Tout,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Task) Reset()         { *m = Task{} }
+func (m *Task) String() string { return proto.CompactTextString(m) }
+func (*Task) ProtoMessage()    {}
+func (*Task) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{3}
+}
+
+func (m *Task) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Task.Unmarshal(m, b)
+}
+func (m *Task) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Task.Marshal(b, m, deterministic)
+}
+func (m *Task) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Task.Merge(m, src)
+}
+func (m *Task) XXX_Size() int {
+	return xxx_messageInfo_Task.Size(m)
+}
+func (m *Task) XXX_DiscardUnknown() {
+	xxx_messageInfo_Task.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Task proto.InternalMessageInfo
+
+func (m *Task) GetTin() string {
+	if m != nil {
+		return m.Tin
+	}
+	return ""
+}
+
+func (m *Task) GetTout() string {
+	if m != nil {
+		return m.Tout
+	}
+	return ""
+}
+
 type Empty struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -81,7 +230,7 @@ func (m *Empty) Reset()         { *m = Empty{} }
 func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bb17ef3f514bfe54, []int{1}
+	return fileDescriptor_bb17ef3f514bfe54, []int{4}
 }
 
 func (m *Empty) XXX_Unmarshal(b []byte) error {
@@ -102,9 +251,628 @@ func (m *Empty) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Empty proto.InternalMessageInfo
 
+type Mothership struct {
+	MUrl                 string   `protobuf:"bytes,1,opt,name=MUrl,proto3" json:"MUrl,omitempty"`
+	Protocol             string   `protobuf:"bytes,2,opt,name=Protocol,proto3" json:"Protocol,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Mothership) Reset()         { *m = Mothership{} }
+func (m *Mothership) String() string { return proto.CompactTextString(m) }
+func (*Mothership) ProtoMessage()    {}
+func (*Mothership) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{5}
+}
+
+func (m *Mothership) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Mothership.Unmarshal(m, b)
+}
+func (m *Mothership) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Mothership.Marshal(b, m, deterministic)
+}
+func (m *Mothership) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Mothership.Merge(m, src)
+}
+func (m *Mothership) XXX_Size() int {
+	return xxx_messageInfo_Mothership.Size(m)
+}
+func (m *Mothership) XXX_DiscardUnknown() {
+	xxx_messageInfo_Mothership.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Mothership proto.InternalMessageInfo
+
+func (m *Mothership) GetMUrl() string {
+	if m != nil {
+		return m.MUrl
+	}
+	return ""
+}
+
+func (m *Mothership) GetProtocol() string {
+	if m != nil {
+		return m.Protocol
+	}
+	return ""
+}
+
+type ProxyUrl struct {
+	PUrl                 string   `protobuf:"bytes,1,opt,name=PUrl,proto3" json:"PUrl,omitempty"`
+	Protocol             string   `protobuf:"bytes,2,opt,name=Protocol,proto3" json:"Protocol,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ProxyUrl) Reset()         { *m = ProxyUrl{} }
+func (m *ProxyUrl) String() string { return proto.CompactTextString(m) }
+func (*ProxyUrl) ProtoMessage()    {}
+func (*ProxyUrl) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{6}
+}
+
+func (m *ProxyUrl) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProxyUrl.Unmarshal(m, b)
+}
+func (m *ProxyUrl) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProxyUrl.Marshal(b, m, deterministic)
+}
+func (m *ProxyUrl) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProxyUrl.Merge(m, src)
+}
+func (m *ProxyUrl) XXX_Size() int {
+	return xxx_messageInfo_ProxyUrl.Size(m)
+}
+func (m *ProxyUrl) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProxyUrl.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ProxyUrl proto.InternalMessageInfo
+
+func (m *ProxyUrl) GetPUrl() string {
+	if m != nil {
+		return m.PUrl
+	}
+	return ""
+}
+
+func (m *ProxyUrl) GetProtocol() string {
+	if m != nil {
+		return m.Protocol
+	}
+	return ""
+}
+
+type Session struct {
+	SessionId            string        `protobuf:"bytes,1,opt,name=SessionId,proto3" json:"SessionId,omitempty"`
+	ClientId             string        `protobuf:"bytes,2,opt,name=ClientId,proto3" json:"ClientId,omitempty"`
+	Motherships          []*Mothership `protobuf:"bytes,3,rep,name=Motherships,proto3" json:"Motherships,omitempty"`
+	InteractMode         bool          `protobuf:"varint,4,opt,name=InteractMode,proto3" json:"InteractMode,omitempty"`
+	Transoprt            string        `protobuf:"bytes,5,opt,name=Transoprt,proto3" json:"Transoprt,omitempty"`
+	ProxyUrls            []*ProxyUrl   `protobuf:"bytes,6,rep,name=ProxyUrls,proto3" json:"ProxyUrls,omitempty"`
+	HostName             string        `protobuf:"bytes,7,opt,name=HostName,proto3" json:"HostName,omitempty"`
+	Arch                 string        `protobuf:"bytes,8,opt,name=Arch,proto3" json:"Arch,omitempty"`
+	ActiveC2             string        `protobuf:"bytes,9,opt,name=ActiveC2,proto3" json:"ActiveC2,omitempty"`
+	IsAlive              string        `protobuf:"bytes,10,opt,name=IsAlive,proto3" json:"IsAlive,omitempty"`
+	PID                  string        `protobuf:"bytes,11,opt,name=PID,proto3" json:"PID,omitempty"`
+	IsPermanent          bool          `protobuf:"varint,12,opt,name=IsPermanent,proto3" json:"IsPermanent,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *Session) Reset()         { *m = Session{} }
+func (m *Session) String() string { return proto.CompactTextString(m) }
+func (*Session) ProtoMessage()    {}
+func (*Session) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{7}
+}
+
+func (m *Session) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Session.Unmarshal(m, b)
+}
+func (m *Session) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Session.Marshal(b, m, deterministic)
+}
+func (m *Session) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Session.Merge(m, src)
+}
+func (m *Session) XXX_Size() int {
+	return xxx_messageInfo_Session.Size(m)
+}
+func (m *Session) XXX_DiscardUnknown() {
+	xxx_messageInfo_Session.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Session proto.InternalMessageInfo
+
+func (m *Session) GetSessionId() string {
+	if m != nil {
+		return m.SessionId
+	}
+	return ""
+}
+
+func (m *Session) GetClientId() string {
+	if m != nil {
+		return m.ClientId
+	}
+	return ""
+}
+
+func (m *Session) GetMotherships() []*Mothership {
+	if m != nil {
+		return m.Motherships
+	}
+	return nil
+}
+
+func (m *Session) GetInteractMode() bool {
+	if m != nil {
+		return m.InteractMode
+	}
+	return false
+}
+
+func (m *Session) GetTransoprt() string {
+	if m != nil {
+		return m.Transoprt
+	}
+	return ""
+}
+
+func (m *Session) GetProxyUrls() []*ProxyUrl {
+	if m != nil {
+		return m.ProxyUrls
+	}
+	return nil
+}
+
+func (m *Session) GetHostName() string {
+	if m != nil {
+		return m.HostName
+	}
+	return ""
+}
+
+func (m *Session) GetArch() string {
+	if m != nil {
+		return m.Arch
+	}
+	return ""
+}
+
+func (m *Session) GetActiveC2() string {
+	if m != nil {
+		return m.ActiveC2
+	}
+	return ""
+}
+
+func (m *Session) GetIsAlive() string {
+	if m != nil {
+		return m.IsAlive
+	}
+	return ""
+}
+
+func (m *Session) GetPID() string {
+	if m != nil {
+		return m.PID
+	}
+	return ""
+}
+
+func (m *Session) GetIsPermanent() bool {
+	if m != nil {
+		return m.IsPermanent
+	}
+	return false
+}
+
+type ImplantAgent struct {
+	AgentId              string   `protobuf:"bytes,1,opt,name=AgentId,proto3" json:"AgentId,omitempty"`
+	Sessioin             *Session `protobuf:"bytes,2,opt,name=Sessioin,proto3" json:"Sessioin,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ImplantAgent) Reset()         { *m = ImplantAgent{} }
+func (m *ImplantAgent) String() string { return proto.CompactTextString(m) }
+func (*ImplantAgent) ProtoMessage()    {}
+func (*ImplantAgent) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{8}
+}
+
+func (m *ImplantAgent) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ImplantAgent.Unmarshal(m, b)
+}
+func (m *ImplantAgent) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ImplantAgent.Marshal(b, m, deterministic)
+}
+func (m *ImplantAgent) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ImplantAgent.Merge(m, src)
+}
+func (m *ImplantAgent) XXX_Size() int {
+	return xxx_messageInfo_ImplantAgent.Size(m)
+}
+func (m *ImplantAgent) XXX_DiscardUnknown() {
+	xxx_messageInfo_ImplantAgent.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ImplantAgent proto.InternalMessageInfo
+
+func (m *ImplantAgent) GetAgentId() string {
+	if m != nil {
+		return m.AgentId
+	}
+	return ""
+}
+
+func (m *ImplantAgent) GetSessioin() *Session {
+	if m != nil {
+		return m.Sessioin
+	}
+	return nil
+}
+
+type Minion struct {
+	MinionId             string   `protobuf:"bytes,1,opt,name=MinionId,proto3" json:"MinionId,omitempty"`
+	MSession             string   `protobuf:"bytes,2,opt,name=MSession,proto3" json:"MSession,omitempty"`
+	HostName             string   `protobuf:"bytes,3,opt,name=HostName,proto3" json:"HostName,omitempty"`
+	Username             string   `protobuf:"bytes,4,opt,name=Username,proto3" json:"Username,omitempty"`
+	Userid               string   `protobuf:"bytes,5,opt,name=Userid,proto3" json:"Userid,omitempty"`
+	GroupId              string   `protobuf:"bytes,6,opt,name=GroupId,proto3" json:"GroupId,omitempty"`
+	Homedir              string   `protobuf:"bytes,7,opt,name=Homedir,proto3" json:"Homedir,omitempty"`
+	MinionType           string   `protobuf:"bytes,8,opt,name=MinionType,proto3" json:"MinionType,omitempty"`
+	OsType               string   `protobuf:"bytes,9,opt,name=OsType,proto3" json:"OsType,omitempty"`
+	Description          string   `protobuf:"bytes,10,opt,name=Description,proto3" json:"Description,omitempty"`
+	Installed            bool     `protobuf:"varint,11,opt,name=Installed,proto3" json:"Installed,omitempty"`
+	MothershipId         string   `protobuf:"bytes,12,opt,name=MothershipId,proto3" json:"MothershipId,omitempty"`
+	MinionIp             string   `protobuf:"bytes,13,opt,name=MinionIp,proto3" json:"MinionIp,omitempty"`
+	OwnerId              string   `protobuf:"bytes,14,opt,name=OwnerId,proto3" json:"OwnerId,omitempty"`
+	Lastseen             string   `protobuf:"bytes,15,opt,name=Lastseen,proto3" json:"Lastseen,omitempty"`
+	PID                  string   `protobuf:"bytes,16,opt,name=PID,proto3" json:"PID,omitempty"`
+	Persistance          bool     `protobuf:"varint,17,opt,name=Persistance,proto3" json:"Persistance,omitempty"`
+	PersistanceMode      string   `protobuf:"bytes,18,opt,name=PersistanceMode,proto3" json:"PersistanceMode,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Minion) Reset()         { *m = Minion{} }
+func (m *Minion) String() string { return proto.CompactTextString(m) }
+func (*Minion) ProtoMessage()    {}
+func (*Minion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{9}
+}
+
+func (m *Minion) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Minion.Unmarshal(m, b)
+}
+func (m *Minion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Minion.Marshal(b, m, deterministic)
+}
+func (m *Minion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Minion.Merge(m, src)
+}
+func (m *Minion) XXX_Size() int {
+	return xxx_messageInfo_Minion.Size(m)
+}
+func (m *Minion) XXX_DiscardUnknown() {
+	xxx_messageInfo_Minion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Minion proto.InternalMessageInfo
+
+func (m *Minion) GetMinionId() string {
+	if m != nil {
+		return m.MinionId
+	}
+	return ""
+}
+
+func (m *Minion) GetMSession() string {
+	if m != nil {
+		return m.MSession
+	}
+	return ""
+}
+
+func (m *Minion) GetHostName() string {
+	if m != nil {
+		return m.HostName
+	}
+	return ""
+}
+
+func (m *Minion) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
+func (m *Minion) GetUserid() string {
+	if m != nil {
+		return m.Userid
+	}
+	return ""
+}
+
+func (m *Minion) GetGroupId() string {
+	if m != nil {
+		return m.GroupId
+	}
+	return ""
+}
+
+func (m *Minion) GetHomedir() string {
+	if m != nil {
+		return m.Homedir
+	}
+	return ""
+}
+
+func (m *Minion) GetMinionType() string {
+	if m != nil {
+		return m.MinionType
+	}
+	return ""
+}
+
+func (m *Minion) GetOsType() string {
+	if m != nil {
+		return m.OsType
+	}
+	return ""
+}
+
+func (m *Minion) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Minion) GetInstalled() bool {
+	if m != nil {
+		return m.Installed
+	}
+	return false
+}
+
+func (m *Minion) GetMothershipId() string {
+	if m != nil {
+		return m.MothershipId
+	}
+	return ""
+}
+
+func (m *Minion) GetMinionIp() string {
+	if m != nil {
+		return m.MinionIp
+	}
+	return ""
+}
+
+func (m *Minion) GetOwnerId() string {
+	if m != nil {
+		return m.OwnerId
+	}
+	return ""
+}
+
+func (m *Minion) GetLastseen() string {
+	if m != nil {
+		return m.Lastseen
+	}
+	return ""
+}
+
+func (m *Minion) GetPID() string {
+	if m != nil {
+		return m.PID
+	}
+	return ""
+}
+
+func (m *Minion) GetPersistance() bool {
+	if m != nil {
+		return m.Persistance
+	}
+	return false
+}
+
+func (m *Minion) GetPersistanceMode() string {
+	if m != nil {
+		return m.PersistanceMode
+	}
+	return ""
+}
+
+type P2P struct {
+	Address              string   `protobuf:"bytes,1,opt,name=Address,proto3" json:"Address,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *P2P) Reset()         { *m = P2P{} }
+func (m *P2P) String() string { return proto.CompactTextString(m) }
+func (*P2P) ProtoMessage()    {}
+func (*P2P) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{10}
+}
+
+func (m *P2P) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_P2P.Unmarshal(m, b)
+}
+func (m *P2P) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_P2P.Marshal(b, m, deterministic)
+}
+func (m *P2P) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_P2P.Merge(m, src)
+}
+func (m *P2P) XXX_Size() int {
+	return xxx_messageInfo_P2P.Size(m)
+}
+func (m *P2P) XXX_DiscardUnknown() {
+	xxx_messageInfo_P2P.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_P2P proto.InternalMessageInfo
+
+func (m *P2P) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+type Peers struct {
+	Peer                 []*Peers `protobuf:"bytes,2,rep,name=Peer,proto3" json:"Peer,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Peers) Reset()         { *m = Peers{} }
+func (m *Peers) String() string { return proto.CompactTextString(m) }
+func (*Peers) ProtoMessage()    {}
+func (*Peers) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{11}
+}
+
+func (m *Peers) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Peers.Unmarshal(m, b)
+}
+func (m *Peers) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Peers.Marshal(b, m, deterministic)
+}
+func (m *Peers) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Peers.Merge(m, src)
+}
+func (m *Peers) XXX_Size() int {
+	return xxx_messageInfo_Peers.Size(m)
+}
+func (m *Peers) XXX_DiscardUnknown() {
+	xxx_messageInfo_Peers.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Peers proto.InternalMessageInfo
+
+func (m *Peers) GetPeer() []*Peers {
+	if m != nil {
+		return m.Peer
+	}
+	return nil
+}
+
+type SendFile struct {
+	Filename             string   `protobuf:"bytes,1,opt,name=Filename,proto3" json:"Filename,omitempty"`
+	Data                 []byte   `protobuf:"bytes,2,opt,name=Data,proto3" json:"Data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SendFile) Reset()         { *m = SendFile{} }
+func (m *SendFile) String() string { return proto.CompactTextString(m) }
+func (*SendFile) ProtoMessage()    {}
+func (*SendFile) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{12}
+}
+
+func (m *SendFile) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SendFile.Unmarshal(m, b)
+}
+func (m *SendFile) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SendFile.Marshal(b, m, deterministic)
+}
+func (m *SendFile) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SendFile.Merge(m, src)
+}
+func (m *SendFile) XXX_Size() int {
+	return xxx_messageInfo_SendFile.Size(m)
+}
+func (m *SendFile) XXX_DiscardUnknown() {
+	xxx_messageInfo_SendFile.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SendFile proto.InternalMessageInfo
+
+func (m *SendFile) GetFilename() string {
+	if m != nil {
+		return m.Filename
+	}
+	return ""
+}
+
+func (m *SendFile) GetData() []byte {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type VideoRequest struct {
+	Filename             string   `protobuf:"bytes,1,opt,name=Filename,proto3" json:"Filename,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *VideoRequest) Reset()         { *m = VideoRequest{} }
+func (m *VideoRequest) String() string { return proto.CompactTextString(m) }
+func (*VideoRequest) ProtoMessage()    {}
+func (*VideoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_bb17ef3f514bfe54, []int{13}
+}
+
+func (m *VideoRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_VideoRequest.Unmarshal(m, b)
+}
+func (m *VideoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_VideoRequest.Marshal(b, m, deterministic)
+}
+func (m *VideoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_VideoRequest.Merge(m, src)
+}
+func (m *VideoRequest) XXX_Size() int {
+	return xxx_messageInfo_VideoRequest.Size(m)
+}
+func (m *VideoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_VideoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_VideoRequest proto.InternalMessageInfo
+
+func (m *VideoRequest) GetFilename() string {
+	if m != nil {
+		return m.Filename
+	}
+	return ""
+}
+
 func init() {
+	proto.RegisterType((*Interact)(nil), "stream.Interact")
 	proto.RegisterType((*Command)(nil), "stream.Command")
+	proto.RegisterType((*All)(nil), "stream.All")
+	proto.RegisterType((*Task)(nil), "stream.Task")
 	proto.RegisterType((*Empty)(nil), "stream.Empty")
+	proto.RegisterType((*Mothership)(nil), "stream.Mothership")
+	proto.RegisterType((*ProxyUrl)(nil), "stream.ProxyUrl")
+	proto.RegisterType((*Session)(nil), "stream.Session")
+	proto.RegisterType((*ImplantAgent)(nil), "stream.ImplantAgent")
+	proto.RegisterType((*Minion)(nil), "stream.Minion")
+	proto.RegisterType((*P2P)(nil), "stream.P2P")
+	proto.RegisterType((*Peers)(nil), "stream.Peers")
+	proto.RegisterType((*SendFile)(nil), "stream.SendFile")
+	proto.RegisterType((*VideoRequest)(nil), "stream.VideoRequest")
 }
 
 func init() {
@@ -112,18 +880,64 @@ func init() {
 }
 
 var fileDescriptor_bb17ef3f514bfe54 = []byte{
-	// 171 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x29, 0x2e, 0x29, 0x4a,
-	0x4d, 0xcc, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0x94, 0xb4, 0xb9, 0xd8,
-	0x9d, 0xf3, 0x73, 0x73, 0x13, 0xf3, 0x52, 0x84, 0xf8, 0xb8, 0x98, 0x3c, 0xf3, 0x24, 0x18, 0x15,
-	0x18, 0x35, 0x38, 0x83, 0x98, 0x3c, 0xf3, 0x84, 0x04, 0xb8, 0x98, 0xfd, 0x4b, 0x4b, 0x24, 0x98,
-	0xc0, 0x02, 0x20, 0xa6, 0x12, 0x3b, 0x17, 0xab, 0x6b, 0x6e, 0x41, 0x49, 0xa5, 0x51, 0x3a, 0x17,
-	0xbb, 0x67, 0x6e, 0x41, 0x4e, 0x62, 0x5e, 0x89, 0x90, 0x1e, 0x17, 0x8f, 0x5b, 0x6a, 0x49, 0x72,
-	0x06, 0xcc, 0x14, 0x5e, 0x3d, 0xa8, 0x3d, 0x60, 0x95, 0x52, 0xfc, 0x30, 0x2e, 0x4c, 0x5e, 0x87,
-	0x8b, 0x2b, 0x38, 0x35, 0x2f, 0xc5, 0xbf, 0xb4, 0xa4, 0xa0, 0xb4, 0x44, 0x08, 0x5d, 0x5a, 0x0a,
-	0x55, 0xbb, 0x91, 0x39, 0x17, 0xab, 0x63, 0x4a, 0x6e, 0x66, 0x9e, 0x90, 0x1e, 0x17, 0x57, 0x50,
-	0x69, 0x1e, 0xcc, 0x10, 0x0c, 0x6d, 0xe8, 0x02, 0x49, 0x6c, 0x60, 0x6f, 0x1a, 0x03, 0x02, 0x00,
-	0x00, 0xff, 0xff, 0xb3, 0xe2, 0x85, 0x8f, 0xf6, 0x00, 0x00, 0x00,
+	// 912 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x56, 0xcd, 0x8e, 0xe3, 0x44,
+	0x10, 0x56, 0x7e, 0x26, 0x71, 0x2a, 0xd9, 0xc9, 0x6c, 0x0b, 0xa1, 0x56, 0x84, 0x20, 0x58, 0x5a,
+	0x14, 0x76, 0x97, 0x1c, 0xb2, 0x20, 0x21, 0xc4, 0x25, 0x9a, 0x61, 0x59, 0x4b, 0x0c, 0x63, 0xf5,
+	0x66, 0x38, 0x63, 0xe2, 0xd6, 0xc6, 0xc2, 0x6e, 0x9b, 0xee, 0xce, 0xc2, 0xdc, 0xb8, 0x70, 0xe7,
+	0xd1, 0x78, 0x17, 0x5e, 0x00, 0x55, 0xff, 0x38, 0xb6, 0x23, 0x2d, 0xd2, 0x9e, 0x52, 0x5f, 0x55,
+	0xf5, 0xe7, 0xfa, 0xeb, 0xea, 0xc0, 0x4c, 0x69, 0xc9, 0x93, 0x62, 0x5d, 0xc9, 0x52, 0x97, 0x64,
+	0x64, 0x51, 0xf8, 0x33, 0x04, 0x91, 0xd0, 0x5c, 0x26, 0x7b, 0x4d, 0x3e, 0x87, 0xb1, 0xe2, 0x4a,
+	0x65, 0xa5, 0xa0, 0xbd, 0x65, 0x6f, 0x35, 0xdd, 0xcc, 0xd7, 0xee, 0xcc, 0x6b, 0xab, 0x66, 0xde,
+	0x8e, 0xae, 0xd7, 0x65, 0x51, 0x24, 0x22, 0xa5, 0xfd, 0xb6, 0xab, 0x53, 0x33, 0x6f, 0x0f, 0x9f,
+	0xd5, 0xae, 0xe4, 0x12, 0xfa, 0x91, 0xe5, 0x9e, 0xb0, 0x7e, 0x24, 0xc8, 0x15, 0x0c, 0xee, 0x8e,
+	0xda, 0x30, 0x4c, 0x18, 0x8a, 0xe1, 0x9f, 0x3d, 0x18, 0x6c, 0xf3, 0xbc, 0xc9, 0xdf, 0x7b, 0x37,
+	0x3f, 0x79, 0x7e, 0xca, 0xc0, 0xc5, 0x72, 0xe5, 0x7d, 0xbd, 0x9e, 0x9d, 0x72, 0x5c, 0xc2, 0x70,
+	0x97, 0xa8, 0x5f, 0xe9, 0xc0, 0x78, 0xce, 0xbc, 0x27, 0xea, 0x98, 0xb1, 0x84, 0xcf, 0xad, 0x07,
+	0x06, 0xb7, 0xcb, 0x7c, 0xb4, 0x28, 0x12, 0x02, 0xc3, 0x5d, 0x59, 0xc7, 0x6b, 0xe4, 0x70, 0x0c,
+	0x17, 0xdf, 0x15, 0x95, 0x7e, 0x08, 0xbf, 0x05, 0xb8, 0x2d, 0xf5, 0x81, 0x4b, 0x75, 0xc8, 0x2a,
+	0x74, 0xbd, 0xbd, 0x97, 0xb9, 0x3b, 0x6d, 0x64, 0xb2, 0x80, 0x20, 0xc6, 0xda, 0xef, 0xcb, 0xdc,
+	0x51, 0xd4, 0x38, 0xfc, 0xc6, 0xd8, 0xfe, 0x78, 0x40, 0x3f, 0x02, 0xc3, 0xb8, 0x71, 0x36, 0xfe,
+	0xbf, 0xb3, 0x7f, 0x0d, 0x60, 0xec, 0x1a, 0x44, 0x3e, 0x82, 0x89, 0x13, 0xa3, 0xd4, 0x11, 0x9c,
+	0x14, 0xc8, 0x72, 0x9d, 0x67, 0x5c, 0xe8, 0x28, 0xf5, 0x2c, 0x1e, 0x93, 0x2f, 0x61, 0x7a, 0x8a,
+	0x5f, 0xd1, 0xc1, 0x72, 0xb0, 0x9a, 0x6e, 0x88, 0xaf, 0xcf, 0xc9, 0xc4, 0x9a, 0x6e, 0x24, 0x84,
+	0x99, 0x2f, 0xed, 0x6d, 0x99, 0x72, 0x3a, 0x5c, 0xf6, 0x56, 0x01, 0x6b, 0xe9, 0x30, 0xa6, 0x9d,
+	0x4c, 0x84, 0x2a, 0x2b, 0xa9, 0xe9, 0x85, 0x8d, 0xa9, 0x56, 0x90, 0x35, 0x4c, 0x7c, 0xe6, 0x8a,
+	0x8e, 0xcc, 0x57, 0xeb, 0xfe, 0x79, 0x03, 0x3b, 0xb9, 0x60, 0x0e, 0xaf, 0x4a, 0xa5, 0x7f, 0x4c,
+	0x0a, 0x4e, 0xc7, 0x36, 0x07, 0x8f, 0xb1, 0x72, 0x5b, 0xb9, 0x3f, 0xd0, 0xc0, 0x56, 0x0e, 0x65,
+	0xf4, 0xdf, 0xee, 0x75, 0xf6, 0x96, 0x5f, 0x6f, 0xe8, 0xc4, 0xfa, 0x7b, 0x4c, 0x28, 0x8c, 0x23,
+	0xb5, 0xcd, 0xb3, 0xb7, 0x9c, 0x82, 0x31, 0x79, 0x88, 0xcd, 0x8f, 0xa3, 0x1b, 0x3a, 0xb5, 0xcd,
+	0x8f, 0xa3, 0x1b, 0xb2, 0x84, 0x69, 0xa4, 0x62, 0x2e, 0x8b, 0x44, 0x70, 0xa1, 0xe9, 0xcc, 0x24,
+	0xda, 0x54, 0x85, 0xf7, 0x30, 0x8b, 0x8a, 0x2a, 0x4f, 0x84, 0xde, 0xbe, 0xe1, 0x42, 0x23, 0xbb,
+	0x11, 0xea, 0x4e, 0x78, 0x48, 0x9e, 0x41, 0x60, 0x9b, 0x92, 0x89, 0xee, 0xf5, 0xf1, 0x37, 0xad,
+	0x76, 0x08, 0xff, 0x1e, 0xc2, 0xe8, 0x36, 0x13, 0xd8, 0xdd, 0x05, 0x04, 0x56, 0xaa, 0x29, 0x6b,
+	0x6c, 0x6c, 0xee, 0xb0, 0xef, 0xad, 0xc7, 0xad, 0x9a, 0x0d, 0x3a, 0x35, 0x5b, 0x40, 0x70, 0xaf,
+	0xb8, 0x14, 0x68, 0x1b, 0x5a, 0x9b, 0xc7, 0xe4, 0x43, 0x18, 0xa1, 0x9c, 0xa5, 0xae, 0x6d, 0x0e,
+	0x61, 0x66, 0xdf, 0xcb, 0xf2, 0x58, 0x45, 0x29, 0x1d, 0xd9, 0xcc, 0x1c, 0x44, 0xcb, 0xab, 0xb2,
+	0xe0, 0x69, 0x26, 0x5d, 0x73, 0x3c, 0x24, 0x1f, 0x03, 0xd8, 0x58, 0x77, 0x0f, 0x15, 0x77, 0x1d,
+	0x6a, 0x68, 0xf0, 0x5b, 0x77, 0xca, 0xd8, 0x6c, 0x97, 0x1c, 0xc2, 0xba, 0xdf, 0x70, 0xb5, 0x97,
+	0x59, 0xa5, 0x31, 0x35, 0xdb, 0xa7, 0xa6, 0x0a, 0xe7, 0x2b, 0x12, 0x4a, 0x27, 0x79, 0xce, 0x53,
+	0xd3, 0xb1, 0x80, 0x9d, 0x14, 0x38, 0xa1, 0xa7, 0x81, 0x8d, 0x52, 0xd3, 0xb8, 0x09, 0x6b, 0xe9,
+	0x1a, 0x75, 0xad, 0xe8, 0xa3, 0x56, 0x5d, 0x2b, 0xcc, 0xe8, 0xee, 0x77, 0xc1, 0x65, 0x94, 0xd2,
+	0x4b, 0x9b, 0x91, 0x83, 0x78, 0xea, 0x87, 0x44, 0x69, 0xc5, 0xb9, 0xa0, 0x73, 0x7b, 0xca, 0x63,
+	0x3f, 0x3f, 0x57, 0xad, 0xf9, 0x89, 0xb9, 0x54, 0x99, 0xd2, 0x89, 0xd8, 0x73, 0xfa, 0xd8, 0xce,
+	0x4f, 0x43, 0x45, 0x56, 0x30, 0x6f, 0x40, 0x73, 0x9d, 0x88, 0x39, 0xdf, 0x55, 0x87, 0x9f, 0xc0,
+	0x20, 0xde, 0xc4, 0x66, 0xc0, 0xd2, 0x54, 0x72, 0xa5, 0xea, 0x01, 0xb3, 0x30, 0x7c, 0x0a, 0x17,
+	0x31, 0xe7, 0x52, 0x91, 0x4f, 0x61, 0x88, 0x02, 0xed, 0x9b, 0x8b, 0xf5, 0xa8, 0xbe, 0x58, 0x68,
+	0x64, 0xc6, 0x84, 0xab, 0xe7, 0x35, 0x17, 0xe9, 0xcb, 0x2c, 0x37, 0xc3, 0x80, 0xbf, 0x66, 0x18,
+	0xdc, 0x80, 0x79, 0x8c, 0x97, 0xeb, 0x26, 0xd1, 0x89, 0x19, 0xae, 0x19, 0x33, 0x72, 0xf8, 0x14,
+	0x66, 0x3f, 0x65, 0x29, 0x2f, 0x19, 0xff, 0xed, 0xc8, 0x95, 0x7e, 0xd7, 0xf9, 0xcd, 0x3f, 0x7d,
+	0x18, 0xbb, 0xfb, 0x41, 0xd6, 0x30, 0x7b, 0xc9, 0xf5, 0xfe, 0xe0, 0x77, 0x78, 0x1d, 0x98, 0xd9,
+	0xa5, 0x8b, 0xee, 0xb2, 0x27, 0x2f, 0xe0, 0x31, 0xc6, 0xe8, 0xe0, 0xdd, 0x51, 0x57, 0x47, 0x4d,
+	0xba, 0x5e, 0x8b, 0x36, 0x0b, 0x59, 0xc1, 0xc4, 0x7c, 0xc4, 0x6c, 0xf3, 0xce, 0x17, 0x5a, 0x8b,
+	0x9f, 0x7c, 0x01, 0x97, 0x48, 0x8f, 0xb2, 0xe3, 0x6e, 0xd9, 0xbb, 0xc4, 0x9f, 0x41, 0x60, 0x88,
+	0xf1, 0xa1, 0xea, 0xf0, 0x4e, 0x3d, 0x44, 0xdb, 0x13, 0xdc, 0xcb, 0x22, 0x45, 0xb1, 0xa9, 0xef,
+	0xd2, 0x7d, 0x0d, 0x73, 0xc6, 0xdf, 0x64, 0x4a, 0x73, 0xe9, 0xeb, 0xf3, 0x41, 0xfd, 0x82, 0x35,
+	0x16, 0xca, 0xa2, 0xbb, 0x24, 0x36, 0xff, 0xf6, 0xe0, 0x62, 0x9b, 0x16, 0x99, 0x20, 0x6b, 0x00,
+	0x76, 0x14, 0xbe, 0x5c, 0x67, 0x95, 0x39, 0x2b, 0xe8, 0x13, 0x18, 0xb3, 0xa3, 0x30, 0xc9, 0xb7,
+	0x53, 0x6d, 0x17, 0x26, 0x84, 0x11, 0x3b, 0x8a, 0xb3, 0x04, 0x5a, 0x59, 0xbe, 0x77, 0xf8, 0xe4,
+	0x2b, 0x98, 0x3b, 0x87, 0xfa, 0x79, 0x3e, 0x7b, 0xba, 0x17, 0x67, 0x9a, 0x5f, 0x46, 0xe6, 0x1f,
+	0xcc, 0x8b, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0x72, 0x77, 0x8e, 0x5a, 0xd1, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -139,7 +953,12 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ImplantClient interface {
 	FetchCommand(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Command, error)
-	SendOutput(ctx context.Context, in *Command, opts ...grpc.CallOption) (*Empty, error)
+	SendCommandOutput(ctx context.Context, in *Command, opts ...grpc.CallOption) (*Empty, error)
+	FetchTask(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Task, error)
+	SendTaskOutput(ctx context.Context, in *Task, opts ...grpc.CallOption) (*Empty, error)
+	FetchAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*All, error)
+	SendAll(ctx context.Context, in *All, opts ...grpc.CallOption) (*Empty, error)
+	RegisterImplant(ctx context.Context, in *ImplantAgent, opts ...grpc.CallOption) (*Session, error)
 }
 
 type implantClient struct {
@@ -159,9 +978,54 @@ func (c *implantClient) FetchCommand(ctx context.Context, in *Empty, opts ...grp
 	return out, nil
 }
 
-func (c *implantClient) SendOutput(ctx context.Context, in *Command, opts ...grpc.CallOption) (*Empty, error) {
+func (c *implantClient) SendCommandOutput(ctx context.Context, in *Command, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/stream.Implant/SendOutput", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/stream.Implant/SendCommandOutput", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *implantClient) FetchTask(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Task, error) {
+	out := new(Task)
+	err := c.cc.Invoke(ctx, "/stream.Implant/FetchTask", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *implantClient) SendTaskOutput(ctx context.Context, in *Task, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/stream.Implant/SendTaskOutput", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *implantClient) FetchAll(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*All, error) {
+	out := new(All)
+	err := c.cc.Invoke(ctx, "/stream.Implant/FetchAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *implantClient) SendAll(ctx context.Context, in *All, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/stream.Implant/SendAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *implantClient) RegisterImplant(ctx context.Context, in *ImplantAgent, opts ...grpc.CallOption) (*Session, error) {
+	out := new(Session)
+	err := c.cc.Invoke(ctx, "/stream.Implant/RegisterImplant", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -171,7 +1035,12 @@ func (c *implantClient) SendOutput(ctx context.Context, in *Command, opts ...grp
 // ImplantServer is the server API for Implant service.
 type ImplantServer interface {
 	FetchCommand(context.Context, *Empty) (*Command, error)
-	SendOutput(context.Context, *Command) (*Empty, error)
+	SendCommandOutput(context.Context, *Command) (*Empty, error)
+	FetchTask(context.Context, *Empty) (*Task, error)
+	SendTaskOutput(context.Context, *Task) (*Empty, error)
+	FetchAll(context.Context, *Empty) (*All, error)
+	SendAll(context.Context, *All) (*Empty, error)
+	RegisterImplant(context.Context, *ImplantAgent) (*Session, error)
 }
 
 // UnimplementedImplantServer can be embedded to have forward compatible implementations.
@@ -181,8 +1050,23 @@ type UnimplementedImplantServer struct {
 func (*UnimplementedImplantServer) FetchCommand(ctx context.Context, req *Empty) (*Command, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchCommand not implemented")
 }
-func (*UnimplementedImplantServer) SendOutput(ctx context.Context, req *Command) (*Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendOutput not implemented")
+func (*UnimplementedImplantServer) SendCommandOutput(ctx context.Context, req *Command) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendCommandOutput not implemented")
+}
+func (*UnimplementedImplantServer) FetchTask(ctx context.Context, req *Empty) (*Task, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchTask not implemented")
+}
+func (*UnimplementedImplantServer) SendTaskOutput(ctx context.Context, req *Task) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendTaskOutput not implemented")
+}
+func (*UnimplementedImplantServer) FetchAll(ctx context.Context, req *Empty) (*All, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FetchAll not implemented")
+}
+func (*UnimplementedImplantServer) SendAll(ctx context.Context, req *All) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendAll not implemented")
+}
+func (*UnimplementedImplantServer) RegisterImplant(ctx context.Context, req *ImplantAgent) (*Session, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterImplant not implemented")
 }
 
 func RegisterImplantServer(s *grpc.Server, srv ImplantServer) {
@@ -207,20 +1091,110 @@ func _Implant_FetchCommand_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Implant_SendOutput_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Implant_SendCommandOutput_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Command)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ImplantServer).SendOutput(ctx, in)
+		return srv.(ImplantServer).SendCommandOutput(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/stream.Implant/SendOutput",
+		FullMethod: "/stream.Implant/SendCommandOutput",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImplantServer).SendOutput(ctx, req.(*Command))
+		return srv.(ImplantServer).SendCommandOutput(ctx, req.(*Command))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Implant_FetchTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImplantServer).FetchTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Implant/FetchTask",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImplantServer).FetchTask(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Implant_SendTaskOutput_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Task)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImplantServer).SendTaskOutput(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Implant/SendTaskOutput",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImplantServer).SendTaskOutput(ctx, req.(*Task))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Implant_FetchAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImplantServer).FetchAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Implant/FetchAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImplantServer).FetchAll(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Implant_SendAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(All)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImplantServer).SendAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Implant/SendAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImplantServer).SendAll(ctx, req.(*All))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Implant_RegisterImplant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImplantAgent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ImplantServer).RegisterImplant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Implant/RegisterImplant",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ImplantServer).RegisterImplant(ctx, req.(*ImplantAgent))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -234,8 +1208,28 @@ var _Implant_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Implant_FetchCommand_Handler,
 		},
 		{
-			MethodName: "SendOutput",
-			Handler:    _Implant_SendOutput_Handler,
+			MethodName: "SendCommandOutput",
+			Handler:    _Implant_SendCommandOutput_Handler,
+		},
+		{
+			MethodName: "FetchTask",
+			Handler:    _Implant_FetchTask_Handler,
+		},
+		{
+			MethodName: "SendTaskOutput",
+			Handler:    _Implant_SendTaskOutput_Handler,
+		},
+		{
+			MethodName: "FetchAll",
+			Handler:    _Implant_FetchAll_Handler,
+		},
+		{
+			MethodName: "SendAll",
+			Handler:    _Implant_SendAll_Handler,
+		},
+		{
+			MethodName: "RegisterImplant",
+			Handler:    _Implant_RegisterImplant_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -247,6 +1241,10 @@ var _Implant_serviceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AdminClient interface {
 	RunCommand(ctx context.Context, in *Command, opts ...grpc.CallOption) (*Command, error)
+	RunTask(ctx context.Context, in *Task, opts ...grpc.CallOption) (*Task, error)
+	RunAll(ctx context.Context, in *All, opts ...grpc.CallOption) (*All, error)
+	RegisterImplant(ctx context.Context, in *ImplantAgent, opts ...grpc.CallOption) (*Session, error)
+	ImplantInteract(ctx context.Context, in *Interact, opts ...grpc.CallOption) (*Interact, error)
 }
 
 type adminClient struct {
@@ -266,9 +1264,49 @@ func (c *adminClient) RunCommand(ctx context.Context, in *Command, opts ...grpc.
 	return out, nil
 }
 
+func (c *adminClient) RunTask(ctx context.Context, in *Task, opts ...grpc.CallOption) (*Task, error) {
+	out := new(Task)
+	err := c.cc.Invoke(ctx, "/stream.Admin/RunTask", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) RunAll(ctx context.Context, in *All, opts ...grpc.CallOption) (*All, error) {
+	out := new(All)
+	err := c.cc.Invoke(ctx, "/stream.Admin/RunAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) RegisterImplant(ctx context.Context, in *ImplantAgent, opts ...grpc.CallOption) (*Session, error) {
+	out := new(Session)
+	err := c.cc.Invoke(ctx, "/stream.Admin/RegisterImplant", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) ImplantInteract(ctx context.Context, in *Interact, opts ...grpc.CallOption) (*Interact, error) {
+	out := new(Interact)
+	err := c.cc.Invoke(ctx, "/stream.Admin/ImplantInteract", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServer is the server API for Admin service.
 type AdminServer interface {
 	RunCommand(context.Context, *Command) (*Command, error)
+	RunTask(context.Context, *Task) (*Task, error)
+	RunAll(context.Context, *All) (*All, error)
+	RegisterImplant(context.Context, *ImplantAgent) (*Session, error)
+	ImplantInteract(context.Context, *Interact) (*Interact, error)
 }
 
 // UnimplementedAdminServer can be embedded to have forward compatible implementations.
@@ -277,6 +1315,18 @@ type UnimplementedAdminServer struct {
 
 func (*UnimplementedAdminServer) RunCommand(ctx context.Context, req *Command) (*Command, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunCommand not implemented")
+}
+func (*UnimplementedAdminServer) RunTask(ctx context.Context, req *Task) (*Task, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunTask not implemented")
+}
+func (*UnimplementedAdminServer) RunAll(ctx context.Context, req *All) (*All, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunAll not implemented")
+}
+func (*UnimplementedAdminServer) RegisterImplant(ctx context.Context, req *ImplantAgent) (*Session, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterImplant not implemented")
+}
+func (*UnimplementedAdminServer) ImplantInteract(ctx context.Context, req *Interact) (*Interact, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ImplantInteract not implemented")
 }
 
 func RegisterAdminServer(s *grpc.Server, srv AdminServer) {
@@ -301,6 +1351,78 @@ func _Admin_RunCommand_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Admin_RunTask_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Task)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).RunTask(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Admin/RunTask",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).RunTask(ctx, req.(*Task))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_RunAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(All)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).RunAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Admin/RunAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).RunAll(ctx, req.(*All))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_RegisterImplant_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ImplantAgent)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).RegisterImplant(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Admin/RegisterImplant",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).RegisterImplant(ctx, req.(*ImplantAgent))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_ImplantInteract_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Interact)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).ImplantInteract(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/stream.Admin/ImplantInteract",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).ImplantInteract(ctx, req.(*Interact))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Admin_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "stream.Admin",
 	HandlerType: (*AdminServer)(nil),
@@ -308,6 +1430,22 @@ var _Admin_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RunCommand",
 			Handler:    _Admin_RunCommand_Handler,
+		},
+		{
+			MethodName: "RunTask",
+			Handler:    _Admin_RunTask_Handler,
+		},
+		{
+			MethodName: "RunAll",
+			Handler:    _Admin_RunAll_Handler,
+		},
+		{
+			MethodName: "RegisterImplant",
+			Handler:    _Admin_RegisterImplant_Handler,
+		},
+		{
+			MethodName: "ImplantInteract",
+			Handler:    _Admin_ImplantInteract_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

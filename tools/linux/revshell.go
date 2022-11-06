@@ -14,6 +14,8 @@ type Shell interface{
   RevShell()
 }
 
+//remember to define shell types
+
 type Commands struct{
   address string
   SleepTime int

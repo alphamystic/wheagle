@@ -19,3 +19,5 @@ func main(){
     go s.NewClient(conn)
   }
 }
+
+/* i honestly forgot i had implemented this :) */

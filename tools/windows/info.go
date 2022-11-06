@@ -43,4 +43,7 @@ package windows
   Type C:\folder\ha.exe > C:\windows\tracing\test.txt:ha.exe
   then use another binary to execute it
   AppVLP.exe C:\windows\tracing\test.txt:ha.exe
+
+  Windows shellcode injector from vyrus001
+  https://github.com/vyrus001/needle/blob/master/windows.go
 */
