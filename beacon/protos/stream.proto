@@ -5,6 +5,7 @@ package stream;
 service Implant {
   rpc FetchCommand (Empty) returns (Command);
   rpc SendCommandOutput (Command) returns (Empty);
+  rpc Fetch
   rpc FetchTask (Empty) returns (Task);
   rpc SendTaskOutput (Task) returns (Empty);
   rpc FetchAll (Empty) returns (All);
@@ -26,6 +27,11 @@ message Interact {
 }
 
 message Command {
+  string In = 1;
+  string Out = 2;
+}
+
+message Powershell {
   string In = 1;
   string Out = 2;
 }

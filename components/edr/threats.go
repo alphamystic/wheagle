@@ -13,3 +13,9 @@ type Threat struct{
   CreatedAt string
   UpdatedAt string
 }
+
+func CreateThreat(t Threat)error{
+  return nil
+}
+
+//func ViewThreat()

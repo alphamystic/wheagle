@@ -53,6 +53,9 @@ func main(){
   }
 }
 
+func InternalCommands(intCmnd string) string{
+  return ""
+}
 /*
   Implements its own session when generated
 */

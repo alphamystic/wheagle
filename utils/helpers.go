@@ -23,6 +23,20 @@ func CheckifStringIsEmpty(data string) bool{
   return true
 }
 
+func TrueRand(len int) string{
+  bytes := make([]byte,len)
+  for i := 0; i < len; i++{
+    bytes[i] = byte(randInt(97,122))
+  }
+  if !CheckifStringIsEmpty(string(bytes)){
+    TrueRand(len)
+  }
+  return string(bytes)
+}
+
+func randInt(min int, max int) int {
+  return min + rand.Intn(max-min)
+}
 
 func RandString(length int) string{
   var output strings.Builder
@@ -105,11 +119,4 @@ func LogErrorToFile(name string,text ...interface{}) error{
   log.SetOutput(writer)
   log.Println(text)
   return nil
-}
-
-//log error of errors
-func Logerror(e error){
-  if e != nil {
-    log.Println(e)
-  }
 }

@@ -1,5 +1,5 @@
 package handlers
-
+/*
 import (
   "fmt"
   "time"
@@ -57,3 +57,5 @@ func GetJWT(res http.ResponseWriter, req *http.Request){
     }
   }
 }
+
+*/
