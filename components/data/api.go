@@ -1,5 +1,13 @@
 package data
 
+import (
+  "fmt"
+  "errors"
+  "database/sql"
+  _ "github.com/go-sql-driver/mysql"
+  "github.com/alphamystic/wheagle/utils"
+)
+
 type Api struct{
   ApiKey string `json:"apikey"`
   OwnerId string  `json:"ownerid"`
@@ -117,7 +125,7 @@ func ViewApiKey(keyId string)(*Api,error){
     e := utils.LogErrorToFile("sql",fmt.Sprintf("EVAPIK with id %s %s",keyId,err))
     utils.Logerror(e)
     if err == sql.ErrNoRows {
-      utils.Danger("Api key doen't exist: "+ keyId)
+      utils.Danger(fmt.Errorf("Api key doen't exist: %s", keyId))
       return errors.New("Requested Apikey doesn't exist")
     }
     return nil,errors.New(fmt.Sprintf("Server encountered an error while viewing apikey of %s",keyId))

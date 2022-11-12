@@ -1,5 +1,6 @@
 package generator
 
+/* A listener is a mothership */
 type LISTENER interface{
   StartListener()
 }

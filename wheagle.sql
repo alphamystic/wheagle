@@ -117,7 +117,6 @@ CREATE TABLE IF NOT EXISTS  `agent`(
   `name`  VARCHAR(255) NOT NULL,
   `agent_ip`  INT UNSIGNED NOT NULL,
   `ownerid`  VARCHAR(255) NOT NULL,
-  `description` TEXT NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -132,6 +131,7 @@ CREATE TABLE IF NOT EXISTS  `assetfiles`(
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS  `assets`(
+  `agentid` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `asset_id` VARCHAR(255) NOT NULL,
   `description` TEXT NOT NULL,
@@ -158,7 +158,6 @@ CREATE TABLE IF NOT EXISTS  `threats`(
   `virusid`  varchar(255) NOT NULL,
   `details`  varchar(255) NOT NULL,
   `active` BOOLEAN,
-  `description` TEXT NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -174,6 +173,7 @@ CREATE TABLE IF NOT EXISTS  `plugins`(
   `plugin_type` INT(255) NOT NULL,
   `description` TEXT NOT NULL,
   `active` BOOLEAN,
+  `signed` BOOLEAN,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;

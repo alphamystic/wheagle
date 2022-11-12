@@ -25,6 +25,26 @@ type Minion struct{
   CreatedAt string  `json:"createdat"`
   UpdatedAt string  `json:"updatedat"`
 }
+/*
+string MinionId = 1;
+string MSession = 2;
+string HostName = 3;
+string Username = 4;
+string Userid = 5;
+string GroupId = 6;
+string Homedir = 7;
+string MinionType = 8;
+string OsType = 9;
+string Description = 10;
+bool Installed = 11;
+string MothershipId = 12;
+string MinionIp = 13;
+string OwnerId = 14;
+string Lastseen = 15;
+string PID = 16;
+bool Persistance = 17;
+string PersistanceMode = 18;
+*/
 
 
 func DBCreateMultipleImplants(minions []Minion)error{
